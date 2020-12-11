@@ -15,35 +15,84 @@
   <header>
     <img class="hero" src="./assets/images/hiking-walking-trails.jpg">
     <span class="app-title is-overlay has-text-white">Happy Trails</span>
+    <button id="myFavorites">Favorites</button>
   </header>
 
   <main>
-    <section id="weather-section">
-      <section id="hourly-weather" class="columns"></section>
-      <section id="sunrise-sunset"></section>
+    <section id="weatherSection">
+      <section id="hourlyWeather" class="columns description temperature"></section>
+      <section id="sunrise"></section>
+      <section id="sunset"></section>
     </section>
 
-    <section id="location-request"></section>
+    <form id="userCity" class="hidden">
+      <section id="location-request">
+        <input type="text" id="city">
+        <button type="submit" id="cityName">Submit</button>
+      </section>
+    </form>
 
-    <section id="hiking-parameters">
+    <section id="hikingParameters" class="hidden">
       <p>How many miles are you willing to travel to get to your hiking trail?</p>
-      <input type="text"><br><br>
+      <input type="text" id="radius"><br><br>
 
       <p>How long would you like to hike?</p>
-      <input type="radio" id="shortest">
+      <input type="radio" id="shortest" value="60" class="lengthTime">
       <label for="shortest">1/2hr-1 hour</label><br>
-      <input type="radio" id="medium">
+      <input type="radio" id="medium" value="120" class="lengthTime">
       <label for="medium">1-2 hours</label><br>
-      <input type="radio" id="longest">
+      <input type="radio" id="longest" value="180" class="lengthTime">
       <label for="longest">3+ hours</label><br><br>
 
       <input type="submit">
     </section>
 
-    <Section id="map"></Section>
+    <section class="hidden" id="userTrails">
+      <Section id="map"></Section>
+      <section id="trailsFound">
 
-    <section id="trails-found"></section>
+        <section class="trail">
+          <p id="trailName0">
+            <button id="favoriteBtn"></button>
+          </p>
+          <p id="length0"></p>
+          <p id="difficulty0"></p>
+        </section>
 
+        <section class="trail">
+          <p id="trailName1">
+            <button id="favoriteBtn"></button>
+          </p>
+          <p id="length1"></p>
+          <p id="difficulty1"></p>
+        </section>
+
+        <section class="trail">
+          <p id="trailName2">
+            <button id="favoriteBtn"></button>
+          </p>
+          <p id="length2"></p>
+          <p id="difficulty2"></p>
+        </section>
+
+        <section class="trail">
+          <p id="trailName3">
+            <button id="favoriteBtn"></button>
+          </p>
+          <p id="length3"></p>
+          <p id="difficulty3"></p>
+        </section>
+
+        <section class="trail">
+          <p id="trailName4">
+            <button id="favoriteBtn"></button>
+          </p>
+          <p id="length4"></p>
+          <p id="difficulty4"></p>
+        </section>
+        
+      </section>
+    </section>
   </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
