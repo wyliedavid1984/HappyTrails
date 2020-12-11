@@ -4,6 +4,7 @@ $(document).ready(function () {
     var distanceTravel;
     var userDistance;
     var timeHiking;
+
     function getLocation() {
         // Make sure browser supports this feature
         if (navigator.geolocation) {
@@ -32,12 +33,20 @@ $(document).ready(function () {
                 method: "GET"
             }).then(function (response) {
                 console.log(response);
-
+                if (trailsobjectdistance < userDistance) {
+                    for (var i = 0; i < 4; i++) {
+                        $("#divfortrails").append(trails.trail);
+                        // or should we push to an array??
+                         // need to select which keys will be appended and what wont be.
+                    }
+                }
             });
         } else {
-            $(document).on("click", "#cityName", function () {
+            $("#userCity").removeClass(".hidden");
+            $(document).on("click", "#cityName", function (e) {
+                e.preventDefault();
                 var weatherKey = "34af04e7087783be92496c2a33100782";
-                var city = $(this).someValueFromUser;
+                var city = $(this).sibling("#city");
                 var latLonURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + weatherKey;
 
                 // first ajax to get the city's lat and lon
@@ -56,21 +65,28 @@ $(document).ready(function () {
                         method: "GET"
                     }).then(function (response) {
                         console.log(response);
-
+                        if (trailsobjectdistance < userDistance) {
+                            for (var i = 0; i < 4; i++) {
+                                $("#divfortrails").append(trails.trail)
+                                // need to select which keys will be appended and what wont be.
+                                // or should we push to an array??
+                            }
+                        }
                     });
                 })
             })
         }
     }
 
-    function getDistance(){
-        $(#distanceSubmit).on("click", function () { 
-             distanceTravel = $(this).sibling("#input field").val();
-            timeHiking = $(this).sibling("#selected time frame");
-            userDistance = timeHiking/15;
+    // function getDistance() {
+    //     $(".lengthTime").on("click", function () {
+    //         distanceTravel = $(this).sibling(".lengthTime").val();
+    //         timeHiking = $(this).sibling("#selected time frame");
+    //         userDistance = timeHiking / 15;
 
-         } )
-    }
+    //     })
+    // }
+
     function weatherBalloon(city) {
 
         // setting local variables for the function
