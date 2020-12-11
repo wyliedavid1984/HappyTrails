@@ -1,46 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-    <script src="https://use.fontawesome.com/d77d433b84.js"></script>
-    <link rel="stylesheet" href="./assets/css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <script src="https://use.fontawesome.com/d77d433b84.js"></script>
+  <link rel="stylesheet" href="./assets/css/style.css" />
 
 </head>
+
 <body>
-    <header>
-        <img class="hero"
-        src= "./assets/images/hiking-walking-trails.jpg">
-        <span class="app-title is-overlay has-text-white">Happy Trails</span>
-    </header>
+  <header>
+    <img class="hero" src="./assets/images/hiking-walking-trails.jpg">
+    <span class="app-title is-overlay has-text-white">Happy Trails</span>
+  </header>
 
-    <section class="weather-section">
-        <img  src= "https://i.pinimg.com/originals/99/a6/62/99a6626b5838489d810e0098db7c2986.jpg">
+  <main>
+    <section id="weather-section">
+      <section id="hourly-weather" class="columns"></section>
+      <section id="sunrise-sunset"></section>
     </section>
 
-    <section class="location-request hiking-parameters">
-    
+    <section id="location-request"></section>
+
+    <section id="hiking-parameters">
+      <p>How many miles are you willing to travel to get to your hiking trail?</p>
+      <input type="text"><br><br>
+
+      <p>How long would you like to hike?</p>
+      <input type="radio" id="shortest">
+      <label for="shortest">1/2hr-1 hour</label><br>
+      <input type="radio" id="medium">
+      <label for="medium">1-2 hours</label><br>
+      <input type="radio" id="longest">
+      <label for="longest">3+ hours</label><br><br>
+
+      <input type="submit">
     </section>
 
-    <section>
-        <div class="field">
-            <label class="label">Hiking Distance</label>
-            <div class="control">
-              <div class="select">
-                <select>
-                  <option>Select dropdown</option>
-                  <option>With options</option>
-                </select>
-              </div>
-            </div>
-          </div>
-    </section>
-   
+    <Section id="map"></Section>
+
+    <section id="trails-found"></section>
+
+  </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="./assets/javascript/javascript.js"></script>
 </body>
+
 </html>
