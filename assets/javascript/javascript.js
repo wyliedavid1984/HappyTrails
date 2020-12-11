@@ -94,9 +94,9 @@ $(document).ready(function () {
                     console.log(response);
                     for (var i = 0; i < 5; i++) {
                         if (response.trails[i].length < length) {
-                            $("#trailName"+i).prepend("Trail Name: "+response.trails[i].name)
-                            $("#length"+i).append("Trail Length: "+response.trails[i].length);
-                            $("#difficulty"+i).append("Difficulty: "+response.trails[i].difficulty)
+                            $("#trailName"+i).prepend("Trail Name: "+response.trails[i].name+"<br>")
+                            $("#length"+i).append("Trail Length: "+response.trails[i].length+"<br>");
+                            $("#difficulty"+i).append("Difficulty: "+response.trails[i].difficulty+"<br>")
                         }
                     }
                 });
