@@ -82,8 +82,8 @@ $(document).ready(function () {
                     }
                 }
                 initMap(lat, lon);
-                setmarkers(trailLocation);
-                
+
+
             })
         });
     }
@@ -132,21 +132,20 @@ $(document).ready(function () {
 
                     // looping through api to gather relevant data.
                     for (var i = 0; i < response.trails.length; i++) {
-                        console.log(response.trails[i]);
+                        console.log("before"+response.trails[i]);
                         if (response.trails[i].length < hikeLength) {
                             $("#trailName" + i).prepend("Trail Name: " + response.trails[i].name + "<br>")
                             $("#length" + i).append("Trail Length: " + response.trails[i].length + "<br>");
                             $("#difficulty" + i).append("Difficulty: " + response.trails[i].difficulty + "<br><br>")
                             trailCoord.lat = response.trails[i].latitude;
                             trailCoord.long = response.trails[i].longitude;
+                            console.log("inloop "+trailCoord);
                             trailLocation.push(trailCoord);
-
-                        } else {
-                            ;
+                            console.log("endLoop "+"hello"[i]);
                         }
                     }
                     initMap(lat, lon);
-                    setmarkers(trailLocation);
+                    console.log("outloop"+trailLocation);
                 });
             })
         })
@@ -157,20 +156,20 @@ $(document).ready(function () {
         L.mapquest.key = 'cm7WzOvDimLpim8JOVFjDAfuIwV2e5h4';
 
         // 'map' refers to a <div> element with the ID map
-        L.mapquest.map('map', {
+        map = L.mapquest.map('map', {
             center: [lati, long],
             layers: L.mapquest.tileLayer('map'),
-            zoom: 12.
+            zoom: 12,
+
 
         });
-
+        setmarkers(trailLocation)
     }
 
     function setmarkers(array) {
         console.log(trailLocation);
         for (var i = 0; i < array.length; i++) {
-            console.log(array);
-            L.marker([array[i].lat, array[i].lon], {
+            L.marker([array[i].lat, array[i].long], {
                 icon: L.mapquest.icons.marker(),
                 draggable: false
             }).addTo(map);
