@@ -14,7 +14,7 @@ $( document ).ready(function() {
 //     let hike = favoriteBtn.value();
 //  }
 
- $("#faveHike1").on("click", function (){
+$("#faveHike1").on("click", function (){
     console.log("I'M A WORKING BUTTON!", $(this).siblings("h1").html());
 
 $("#faveHike2").on("click", function (){
@@ -24,6 +24,9 @@ $("#faveHike3").on("click", function (){
         console.log("I'M A WORKING BUTTON!", $(this).siblings("h1").html());
 
 $("#faveHike4").on("click", function (){
+        console.log("I'M A WORKING BUTTON!", $(this).siblings("h1").html());
+
+$("#faveHike5").on("click", function (){
         console.log("I'M A WORKING BUTTON!", $(this).siblings("h1").html());
     
     // var value =  $(this).siblings("h1").html();
