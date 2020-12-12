@@ -1,9 +1,9 @@
 $(document).ready(function () {
 
     getLocation();
-    var distanceTravel;
     var userDistance;
-    var timeHiking;
+    var timeHike;
+
 
     function getLocation() {
         // Make sure browser supports this feature
@@ -21,98 +21,93 @@ $(document).ready(function () {
         // Grab coordinates from the given object
         var lat = position.coords.latitude;
         var lon = position.coords.longitude;
-        var userDistance = 20;
+
         console.log("Your coordinates are Latitude: " + lat + " Longitude " + lon);
 
-
         if (position) {
-            var hikeURL = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon=" + lon + "&maxDistance=" + userDistance + "&key=200992005-36cef2b40b13fda0780742aba62d29e7";
-
-            $.ajax({
-                url: hikeURL,
-                method: "GET"
-            }).then(function (response) {
-                console.log(response);
-                if (trailsobjectdistance < userDistance) {
-                    for (var i = 0; i < 4; i++) {
-                        $("#divfortrails").append(trails.trail);
-                        // or should we push to an array??
-                         // need to select which keys will be appended and what wont be.
-                    }
-                }
-            });
-        } else {
-            $("#userCity").removeClass(".hidden");
-            $(document).on("click", "#cityName", function (e) {
+            console.log("trusting");
+            $("document").on("click", "#cityName", function (e) {
                 e.preventDefault();
-                var weatherKey = "34af04e7087783be92496c2a33100782";
-                var city = $(this).sibling("#city");
-                var latLonURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + weatherKey;
+                console.log("gps");
+                $("#userCity").addClass("hidden");
+                $("#hikingParameters").removeClass("hidden");
+                $("document").on("click", "#parameters", function (e) {
+                    e.preventDefault();
 
-                // first ajax to get the city's lat and lon
-                $.ajax({
-                    url: latLonURL,
-                    method: "GET"
-                }).then(function (res) {
+                    timeHike = $(".lengthTime").val();
+                    console.log(timeHike);
+                    userDistance = $("#radius").val();
+                    console.log(userDistance);
+                    console.log(typeof (userDistance));
+                    $("#hikingParameters").addClass("hidden");
+                    $("#userTrails").removeClass("hidden");
 
-                    // setting the lon and lat variable to the city's lat and lon
-                    var lon = JSON.stringify(res.coord.lon);
-                    var lat = JSON.stringify(res.coord.lat);
                     var hikeURL = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon=" + lon + "&maxDistance=" + userDistance + "&key=200992005-36cef2b40b13fda0780742aba62d29e7";
-
+                    console.log(hikeURL);
                     $.ajax({
                         url: hikeURL,
                         method: "GET"
                     }).then(function (response) {
                         console.log(response);
-                        if (trailsobjectdistance < userDistance) {
-                            for (var i = 0; i < 4; i++) {
-                                $("#divfortrails").append(trails.trail)
-                                // need to select which keys will be appended and what wont be.
-                                // or should we push to an array??
-                            }
+                        for (var i = 0; i < 4; i++) {
+                            $("#trailName" + i).append(response.trails[i])
                         }
-                    });
-                })
+                    })
+                });
             })
         }
     }
 
-    // function getDistance() {
-    //     $(".lengthTime").on("click", function () {
-    //         distanceTravel = $(this).sibling(".lengthTime").val();
-    //         timeHiking = $(this).sibling("#selected time frame");
-    //         userDistance = timeHiking / 15;
+    $("document").on("click", "#cityName", function (e) {
+        e.preventDefault();
+        console.log("no gps");
+        // we are getting the value of the city from the user.
+        var city = $("#city").val();
+        var weatherKey = "34af04e7087783be92496c2a33100782";
 
-    //     })
-    // }
-
-    function weatherBalloon(city) {
-
-        // setting local variables for the function
-        var key = '34af04e7087783be92496c2a33100782';
-        var latLonURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + key;
-
+        var latLonURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + weatherKey;
+        $("#userCity").addClass("hidden");
+        $("#hikingParameters").removeClass("hidden");
         // first ajax to get the city's lat and lon
-        $.ajax({
-            url: latLonURL,
-            method: "GET"
-        }).then(function (res) {
-
-            // setting the lon and lat variable to the city's lat and lon
-            var lon = JSON.stringify(res.coord.lon);
-            var lat = JSON.stringify(res.coord.lat);
-            var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&appid=" + key;
-
-            // second ajax to get the a future forecast as well as regular data
+        $("document").on("click", "#parameters", function (e) {
+            e.preventDefault();
+            console.log("hello")
+            timeHike = $(".lengthTime").val();
+            console.log(timeHike);
+            userDistance = $("#radius").val();
+            console.log(userDistance);
+            $("#hikingParameters").addClass("hidden");
+            $("#userTrails").removeClass("hidden");
             $.ajax({
-                url: queryURL,
+                url: latLonURL,
                 method: "GET"
-            }).then(function (response) {
-                console.log(response)
-            });
+            }).then(function (res) {
+                // setting the lon and lat variable to the city's lat and lon
+                var lon = JSON.stringify(res.coord.lon);
+                var lat = JSON.stringify(res.coord.lat);
+                var hikeLength = timeHike / 12;
+                console.log(length);
+                var hikeURL = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon=" + lon + "&maxDistance=" + userDistance + "&key=200992005-36cef2b40b13fda0780742aba62d29e7";
 
-        });
-    }
-    weatherBalloon("wilmington");
+                $.ajax({
+                    url: hikeURL,
+                    method: "GET"
+                }).then(function (response) {
+                    console.log(response);
+                    for (var i = 0; i < response.trails.length; i++) {
+                        if (response.trails[i].length < hikeLength) {
+                            $("#trailName"+i).prepend("Trail Name: "+response.trails[i].name+"<br>")
+                            $("#length"+i).append("Trail Length: "+response.trails[i].length+"<br>");
+                            $("#difficulty"+i).append("Difficulty: "+response.trails[i].difficulty+"<br><br>")
+                        }
+                    }
+                });
+            })
+        })
+    })
+    console.log("hello");
+
+
+
+
 })

@@ -13,14 +13,14 @@ $(document).ready(function () {
     let hike = favoriteBtn.value();
  }
 
- allFavorites.push (hike);
  //Call the function so that when the user clicks the "favorite" heart icon next to 
  //a hike they would like to save, the name of the hike will be saved. 
  $(".favoriteBtn").click (saveHike){
     console.log("working button")
  }
 
- 
+//  allFavorites.push (hike);
+
 //     //does it make more sense to use .sibling rather than .parent in the line below?
 //     var favorite = $(this).parent.val();
 
