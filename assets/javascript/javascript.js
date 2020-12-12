@@ -28,6 +28,7 @@ $(document).ready(function () {
             console.log("trusting");
             $("#cityName").on("click", function (e) {
                 e.preventDefault();
+                console.log("gps");
                 $("#userCity").addClass("hidden");
                 $("#hikingParameters").removeClass("hidden");
                 $("#parameters").on("click", function (e) {
@@ -56,9 +57,10 @@ $(document).ready(function () {
             })
         }
     }
+
     $("#cityName").on("click", function (e) {
         e.preventDefault();
-
+        console.log("no gps");
         // we are getting the value of the city from the user.
         var city = $("#city").val();
         var weatherKey = "34af04e7087783be92496c2a33100782";
@@ -83,7 +85,7 @@ $(document).ready(function () {
                 // setting the lon and lat variable to the city's lat and lon
                 var lon = JSON.stringify(res.coord.lon);
                 var lat = JSON.stringify(res.coord.lat);
-                var length = timeHike / 12;
+                var hikeLength = timeHike / 12;
                 console.log(length);
                 var hikeURL = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon=" + lon + "&maxDistance=" + userDistance + "&key=200992005-36cef2b40b13fda0780742aba62d29e7";
 
@@ -92,11 +94,11 @@ $(document).ready(function () {
                     method: "GET"
                 }).then(function (response) {
                     console.log(response);
-                    for (var i = 0; i < 5; i++) {
-                        if (response.trails[i].length < length) {
+                    for (var i = 0; i < response.trails.length; i++) {
+                        if (response.trails[i].length < hikeLength) {
                             $("#trailName"+i).prepend("Trail Name: "+response.trails[i].name+"<br>")
                             $("#length"+i).append("Trail Length: "+response.trails[i].length+"<br>");
-                            $("#difficulty"+i).append("Difficulty: "+response.trails[i].difficulty+"<br>")
+                            $("#difficulty"+i).append("Difficulty: "+response.trails[i].difficulty+"<br><br>")
                         }
                     }
                 });
