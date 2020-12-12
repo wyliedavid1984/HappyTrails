@@ -5,7 +5,7 @@ $(document).ready(function () {
     var timeHike;
     var lat;
     var lon;
-    console.log("I loaded")
+    var map;
 
     function getLocation() {
         // Make sure browser supports this feature
@@ -29,31 +29,30 @@ $(document).ready(function () {
         if (!position) {
             alert("You didn't share you're location.")
             return
-        } 
+        }
     }
 
-    // setting button clicks to specific functions
-    $("#no-gps").on("click", noGps)
-    $("#gps").on("click", gps)
 
+    // this function used the parameter 
     function gps(e) {
         e.preventDefault();
         // calling function to get user lat and lon
         console.log("gps");
         getLocation();
-        
+
         // hiding previous div and show the next
         $("#userCity").addClass("hidden");
         $("#hikingParameters").removeClass("hidden");
 
         $(document).on("click", "#parameters", function (e) {
             e.preventDefault();
-            
+
             // setting value to variables
             timeHike = $(".lengthTime").val();
             userDistance = $("#radius").val();
+            var hikeLength = timeHike / 12;
             var hikeURL = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon=" + lon + "&maxDistance=" + userDistance + "&key=200992005-36cef2b40b13fda0780742aba62d29e7";
-            
+
             // hiding previous div and show the next
             $("#hikingParameters").addClass("hidden");
             $("#userTrails").removeClass("hidden");
@@ -64,7 +63,7 @@ $(document).ready(function () {
                 method: "GET"
             }).then(function (response) {
                 console.log(response);
-            
+                
                 // looping through api to gather relevant data.
                 for (var i = 0; i < response.trails.length; i++) {
                     if (response.trails[i].length < hikeLength) {
@@ -73,10 +72,12 @@ $(document).ready(function () {
                         $("#difficulty" + i).append("Difficulty: " + response.trails[i].difficulty + "<br><br>")
                     }
                 }
+                initMap(lat, lon);
             })
         });
     }
 
+    // function that takes in parameter if the user doesn't want to share location
     function noGps(e) {
         e.preventDefault();
         console.log("no gps");
@@ -105,7 +106,7 @@ $(document).ready(function () {
                 url: latLonURL,
                 method: "GET"
             }).then(function (res) {
-            
+
                 // setting the all variables to get hiking trails
                 var lon = JSON.stringify(res.coord.lon);
                 var lat = JSON.stringify(res.coord.lat);
@@ -117,7 +118,7 @@ $(document).ready(function () {
                     method: "GET"
                 }).then(function (response) {
                     console.log(response);
-            
+                    
                     // looping through api to gather relevant data.
                     for (var i = 0; i < response.trails.length; i++) {
                         console.log(response.trails[i]);
@@ -125,15 +126,28 @@ $(document).ready(function () {
                             $("#trailName" + i).prepend("Trail Name: " + response.trails[i].name + "<br>")
                             $("#length" + i).append("Trail Length: " + response.trails[i].length + "<br>");
                             $("#difficulty" + i).append("Difficulty: " + response.trails[i].difficulty + "<br><br>")
-                        }else{
+                        } else {
                             ;
                         }
                     }
+                    initMap(lat, lon);
                 });
             })
         })
     }
 
+function initMap(lati, long){
+L.mapquest.key = 'cm7WzOvDimLpim8JOVFjDAfuIwV2e5h4';
 
+// 'map' refers to a <div> element with the ID map
+L.mapquest.map('map', {
+    center: [lati, long],
+    layers: L.mapquest.tileLayer('map'),
+    zoom: 12
+});
+}
+    // setting button clicks to specific functions
+    $("#no-gps").on("click", noGps)
+    $("#gps").on("click", gps)
 
 })

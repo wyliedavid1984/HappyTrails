@@ -7,6 +7,8 @@
   <title>Document</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
   <script src="https://use.fontawesome.com/d77d433b84.js"></script>
+  <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
   <link rel="stylesheet" href="./assets/css/style.css" />
 
 </head>
@@ -29,7 +31,7 @@
 
     <div id="userCity">
       <form>
-        <p>If you want to enable share Location please click here. <button id="#gps" type="submit">Share
+        <p>If you want to enable share Location please click here. <button id="gps" type="submit">Share
             Location</button></p>
       </form>
 
@@ -55,7 +57,7 @@
     </section>
 
     <section class="hidden" id="userTrails">
-      <Section id="map">Map here</Section>
+      <Section id="map" class="container is-max-desktop">Map here</Section>
       <section id="trailsFound">
 
         <section class="trail">
@@ -103,7 +105,7 @@
   </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
   <script src="./assets/javascript/javascript.js"></script>
 </body>
 
