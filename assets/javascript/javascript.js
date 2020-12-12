@@ -81,8 +81,9 @@ $(document).ready(function () {
                         trailLocation.push(trailCoord);
                     }
                 }
-                // setmarkers(trailLocation);
                 initMap(lat, lon);
+                setmarkers(trailLocation);
+                
             })
         });
     }
@@ -144,8 +145,8 @@ $(document).ready(function () {
                             ;
                         }
                     }
-                    // setmarkers(trailLocation);
                     initMap(lat, lon);
+                    setmarkers(trailLocation);
                 });
             })
         })
@@ -154,9 +155,6 @@ $(document).ready(function () {
 
     function initMap(lati, long) {
         L.mapquest.key = 'cm7WzOvDimLpim8JOVFjDAfuIwV2e5h4';
-
-        //  "https://www.mapquestapi.com/staticmap/v5/map?key="+L.mapquest.key+"&center=Boston,MA&size=200,200@2x"
-        //     https: //www.mapquestapi.com/staticmap/v5/map?key=KEY&center=Boston,MA&size=@2x
 
         // 'map' refers to a <div> element with the ID map
         L.mapquest.map('map', {
