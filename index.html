@@ -11,14 +11,16 @@
 
 </head>
 
-<body>
+<body class="hero is-fullheight has-background-info">
   <header>
-    <img class="hero" src="./assets/images/hiking-walking-trails.jpg">
+    <section class="container"></section>
+    <button id="myFavorites" class="button is-link is-rounded favBtn">Favorites</button>
+    <img class="image" src="./assets/images/hiking-walking-trails.jpg">
     <span class="app-title has-text-white">Happy Trails</span>
-    <button id="myFavorites">Favorites</button>
+    </section>
   </header>
 
-  <main>
+  <main class="hero">
     <section id="weatherSection">
       <section id="hourlyWeather" class="columns description temperature"></section>
       <section id="sunrise"></section>
@@ -27,7 +29,7 @@
 
     <div id="userCity">
       <form id="location-request">
-        
+
         <input type="text" id="city" placeholder="Please enter a city if you didn't allow location.">
         <button type="submit" id="cityName">Submit</button>
       </form>
@@ -91,7 +93,7 @@
           <p id="length4"></p>
           <p id="difficulty4"></p>
         </section>
-        
+
       </section>
     </section>
   </main>
