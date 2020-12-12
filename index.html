@@ -13,8 +13,10 @@
 
 </head>
 
+<!-- Bulma framework used for styling -->
 <body class="hero has-background-info is-fullheight">
   
+  <!-- Header section -->
   <header class="hero-head">
     <div style="background-image: url('hiking-walking-trails.jpg');" class="container headImage mb-6">
     <button id="myFavorites" class="button is-rounded favBtn mt-2 mr-2 has-background-danger-dark" ><i class="fa fa-heart-o" aria-hidden="true"></i>&nbsp Favorites</button>
@@ -22,18 +24,26 @@
     </section>
   </header>
 
+  <!-- Main body section -->
   <main class="hero-body">
+    <!-- This section displays the weather forecast -->
     <section id="weatherSection columns">
       <section id="hourlyWeather" class="column description temperature"></section>
       <section id="sunrise"></section>
       <section id="sunset"></section>
     </section>
 
-    
+    <!-- This section displays an input for user city or requests to use user location -->
     <section id="userCity" class="container is-full is-centered">
       <form class="columns is-centered">
+        <p>If you deny location, this button will be disabled.</p>
         <p>If you want to enable share Location please click here. <button id="gps" type="submit">Share
             Location</button></p>
+      </form>
+
+      <form  class="columns is-centered">
+        <input type="text" id="zip" placeholder="Please enter a zip code." class="column is-one-third input is-focused">
+        <button type="submit" id="zipCode">Submit</button>
       </form>
 
       <form id="location-request" class="columns is-centered">
@@ -42,6 +52,7 @@
       </form>
     </section>
 
+    <!-- This section ask user for hiking parameters -->
     <section id="hikingParameters" class="hidden">
       <p>How many miles are you willing to travel to get to your hiking trail?</p>
       <input type="text" id="radius"><br><br>
@@ -54,16 +65,17 @@
       <input type="radio" id="longest" value="180" class="lengthTime">
       <label for="longest">3+ hours</label><br><br>
 
-      <button type="submit" id="parameters">Submit</button>
+      <button type="submit" id="parameters">Go Hiking!</button>
     </section>
 
+    <!-- This section displays the trails that were found based on user input -->
     <section class="hidden" id="userTrails">
       <Section id="map" class="container is-max-desktop hero">Map here</Section>
       <section id="trailsFound">
 
         <section class="trail">
           <p id="trailName0">
-            <button id="faveHike1">Fav</button>
+            <button id="faveHike1"><i class="fa fa-heart" aria-hidden="true"></i></button>
           </p>
           <p id="length0"></p>
           <p id="difficulty0"></p>
@@ -105,6 +117,7 @@
     </section>
   </main>
 
+  <!-- Footer section -->
   <footer class="hero-foot"></footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
