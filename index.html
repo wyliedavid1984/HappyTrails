@@ -7,33 +7,40 @@
   <title>Document</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
   <script src="https://use.fontawesome.com/d77d433b84.js"></script>
-  <link rel="stylesheet" href="./assets/css/style.css" />
+  <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
+  <link rel="stylesheet" href="./assets/css/style.css"/>
 
 </head>
 
-<body class="hero is-fullheight has-background-info">
-  <header>
-    <section class="container"></section>
-    <button id="myFavorites" class="button is-link is-rounded favBtn">Favorites</button>
-    <img class="image" src="./assets/images/hiking-walking-trails.jpg">
-    <span class="app-title has-text-white">Happy Trails</span>
+<body class="hero has-background-info is-fullheight">
+  
+  <header class="hero-head">
+    <div style="background-image: url('hiking-walking-trails.jpg');" class="container headImage mb-6">
+    <button id="myFavorites" class="button is-rounded favBtn mt-2 mr-2 has-background-danger-dark" ><i class="fa fa-heart-o" aria-hidden="true"></i>&nbsp Favorites</button>
+    <span class="appTitle has-text-white">Happy Trails</span>
     </section>
   </header>
 
-  <main class="hero">
-    <section id="weatherSection">
-      <section id="hourlyWeather" class="columns description temperature"></section>
+  <main class="hero-body">
+    <section id="weatherSection columns">
+      <section id="hourlyWeather" class="column description temperature"></section>
       <section id="sunrise"></section>
       <section id="sunset"></section>
     </section>
 
-    <div id="userCity">
-      <form id="location-request">
-
-        <input type="text" id="city" placeholder="Please enter a city if you didn't allow location.">
-        <button type="submit" id="cityName">Submit</button>
+    
+    <section id="userCity" class="container is-full is-centered">
+      <form class="columns is-centered">
+        <p>If you want to enable share Location please click here. <button id="gps" type="submit">Share
+            Location</button></p>
       </form>
-    </div>
+
+      <form id="location-request" class="columns is-centered">
+        <input type="text" id="city" placeholder="Please enter a city." class="column is-one-third input is-focused">
+        <button type="submit" id="no-gps">Submit</button>
+      </form>
+    </section>
 
     <section id="hikingParameters" class="hidden">
       <p>How many miles are you willing to travel to get to your hiking trail?</p>
@@ -51,12 +58,12 @@
     </section>
 
     <section class="hidden" id="userTrails">
-      <Section id="map">Map here</Section>
+      <Section id="map" class="container is-max-desktop hero">Map here</Section>
       <section id="trailsFound">
 
         <section class="trail">
           <p id="trailName0">
-            <button id="favoriteBtn"></button>
+            <button id="faveHike1">Fav</button>
           </p>
           <p id="length0"></p>
           <p id="difficulty0"></p>
@@ -64,7 +71,7 @@
 
         <section class="trail">
           <p id="trailName1">
-            <button id="favoriteBtn"></button>
+            <button id="faveHike2">Fav</button>
           </p>
           <p id="length1"></p>
           <p id="difficulty1"></p>
@@ -72,7 +79,7 @@
 
         <section class="trail">
           <p id="trailName2">
-            <button id="favoriteBtn"></button>
+            <button id="faveHike3">Fav</button>
           </p>
           <p id="length2"></p>
           <p id="difficulty2"></p>
@@ -80,7 +87,7 @@
 
         <section class="trail">
           <p id="trailName3">
-            <button id="favoriteBtn"></button>
+            <button id="faveHike4">Fav</button>
           </p>
           <p id="length3"></p>
           <p id="difficulty3"></p>
@@ -88,7 +95,7 @@
 
         <section class="trail">
           <p id="trailName4">
-            <button id="favoriteBtn"></button>
+            <button id="faveHike5">Fav</button>
           </p>
           <p id="length4"></p>
           <p id="difficulty4"></p>
@@ -98,8 +105,10 @@
     </section>
   </main>
 
+  <footer class="hero-foot"></footer>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
   <script src="./assets/javascript/javascript.js"></script>
 </body>
 

@@ -5,36 +5,47 @@ $( document ).ready(function() {
 });
 
 
-
  //create an empty array to store the user's input (favorite hikes)
-//  var allFavorites = []; 
- 
-//  const saveHike = (ev) =>{
-//     ev.preventDefault();
-//     let hike = favoriteBtn.value();
-//  }
+ var allFavorites = []; 
 
 $("#faveHike1").on("click", function (){
     console.log("I'M A WORKING BUTTON!", $(this).siblings("h1").html());
+    var value1 = $(this).parent.val();
 
 $("#faveHike2").on("click", function (){
         console.log("I'M A WORKING BUTTON!", $(this).siblings("h1").html());
+        var value2 = $(this).parent.val();
 
 $("#faveHike3").on("click", function (){
         console.log("I'M A WORKING BUTTON!", $(this).siblings("h1").html());
+        var value3 = $(this).parent.val();
 
 $("#faveHike4").on("click", function (){
         console.log("I'M A WORKING BUTTON!", $(this).siblings("h1").html());
+        var value4 = $(this).parent.val();
 
 $("#faveHike5").on("click", function (){
         console.log("I'M A WORKING BUTTON!", $(this).siblings("h1").html());
+        var value5 = $(this).parent.val();
     
-    // var value =  $(this).siblings("h1").html();
-
     //save to localstorage
-    // localStorage.setItem(value);
+    localStorage.setItem(value1);
+    localStorage.setItem(value2);
+    localStorage.setItem(value3);
+    localStorage.setItem(value4);
+    localStorage.setItem(value5);
 
 })
+
+$("#9 .input-group .form-control").val(localStorage.getItem("9"));
+$("#10 .input-group .form-control").val(localStorage.getItem("10"));
+$("#11 .input-group .form-control").val(localStorage.getItem("11"));
+$("#12 .input-group .form-control").val(localStorage.getItem("12"));
+$("#13 .input-group .form-control").val(localStorage.getItem("13"));
+$("#14 .input-group .form-control").val(localStorage.getItem("14"));
+$("#15 .input-group .form-control").val(localStorage.getItem("15"));
+$("#16 .input-group .form-control").val(localStorage.getItem("16"));
+$("#17 .input-group .form-control").val(localStorage.getItem("17"));
 
  //Call the function so that when the user clicks the "favorite" heart icon next to 
  //a hike they would like to save, the name of the hike will be saved. 
