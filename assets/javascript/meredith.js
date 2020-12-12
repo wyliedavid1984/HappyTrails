@@ -7,19 +7,29 @@ $( document ).ready(function() {
 
 
  //create an empty array to store the user's input (favorite hikes)
- var allFavorites = []; 
+//  var allFavorites = []; 
  
 //  const saveHike = (ev) =>{
 //     ev.preventDefault();
 //     let hike = favoriteBtn.value();
 //  }
 
- $(".favoriteBtn").on("click", function (){
-    console.log("I'M A WORKING BUTTON!",$(this).parent().attr("id"));
-    var value =  $(this).siblings("input").val();
+ $("#faveHike1").on("click", function (){
+    console.log("I'M A WORKING BUTTON!", $(this).siblings("h1").html());
+
+$("#faveHike2").on("click", function (){
+        console.log("I'M A WORKING BUTTON!", $(this).siblings("h1").html());
+
+$("#faveHike3").on("click", function (){
+        console.log("I'M A WORKING BUTTON!", $(this).siblings("h1").html());
+
+$("#faveHike4").on("click", function (){
+        console.log("I'M A WORKING BUTTON!", $(this).siblings("h1").html());
+    
+    // var value =  $(this).siblings("h1").html();
 
     //save to localstorage
-   //  localStorage.setItem(time, value);
+    // localStorage.setItem(value);
 
 })
 
