@@ -26,12 +26,12 @@ $(document).ready(function () {
 
         if (position) {
             console.log("trusting");
-            $("#cityName").on("click", function (e) {
+            $("document").on("click", "#cityName", function (e) {
                 e.preventDefault();
                 console.log("gps");
                 $("#userCity").addClass("hidden");
                 $("#hikingParameters").removeClass("hidden");
-                $("#parameters").on("click", function (e) {
+                $("document").on("click", "#parameters", function (e) {
                     e.preventDefault();
 
                     timeHike = $(".lengthTime").val();
@@ -58,7 +58,7 @@ $(document).ready(function () {
         }
     }
 
-    $("#cityName").on("click", function (e) {
+    $("document").on("click", "#cityName", function (e) {
         e.preventDefault();
         console.log("no gps");
         // we are getting the value of the city from the user.
@@ -69,7 +69,7 @@ $(document).ready(function () {
         $("#userCity").addClass("hidden");
         $("#hikingParameters").removeClass("hidden");
         // first ajax to get the city's lat and lon
-        $("#parameters").on("click", function (e) {
+        $("document").on("click", "#parameters", function (e) {
             e.preventDefault();
             console.log("hello")
             timeHike = $(".lengthTime").val();
