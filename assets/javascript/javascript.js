@@ -81,7 +81,7 @@ $(document).ready(function () {
                         trailLocation.push(trailCoord);
                     }
                 }
-                setmarkers(trailLocation);
+                // setmarkers(trailLocation);
                 initMap(lat, lon);
             })
         });
@@ -144,7 +144,7 @@ $(document).ready(function () {
                             ;
                         }
                     }
-                    setmarkers(trailLocation);
+                    // setmarkers(trailLocation);
                     initMap(lat, lon);
                 });
             })
