@@ -6,6 +6,12 @@ $(document).ready(function () {
     var lat;
     var lon;
     var map;
+    var trailLocation = [];
+    var trailCoord = {
+        lat: "",
+        long: "",
+    }
+
 
     function getLocation() {
         // Make sure browser supports this feature
@@ -63,15 +69,19 @@ $(document).ready(function () {
                 method: "GET"
             }).then(function (response) {
                 console.log(response);
-                
+
                 // looping through api to gather relevant data.
                 for (var i = 0; i < response.trails.length; i++) {
                     if (response.trails[i].length < hikeLength) {
-                        $("#trailName" + i).prepend("Trail Name: " + response.trails[i].name + "<br>")
+                        $("#trailName" + i).prepend("Trail Name: " + response.trails[i].name + "<br>");
                         $("#length" + i).append("Trail Length: " + response.trails[i].length + "<br>");
-                        $("#difficulty" + i).append("Difficulty: " + response.trails[i].difficulty + "<br><br>")
+                        $("#difficulty" + i).append("Difficulty: " + response.trails[i].difficulty + "<br><br>");
+                        trailCoord.lat = response.trails[i].latitude;
+                        trailCoord.long = (response.trails[i].longitude);
+                        trailLocation.push(trailCoord);
                     }
                 }
+                setmarkers(trailLocation);
                 initMap(lat, lon);
             })
         });
@@ -118,7 +128,7 @@ $(document).ready(function () {
                     method: "GET"
                 }).then(function (response) {
                     console.log(response);
-                    
+
                     // looping through api to gather relevant data.
                     for (var i = 0; i < response.trails.length; i++) {
                         console.log(response.trails[i]);
@@ -126,26 +136,49 @@ $(document).ready(function () {
                             $("#trailName" + i).prepend("Trail Name: " + response.trails[i].name + "<br>")
                             $("#length" + i).append("Trail Length: " + response.trails[i].length + "<br>");
                             $("#difficulty" + i).append("Difficulty: " + response.trails[i].difficulty + "<br><br>")
+                            trailCoord.lat = response.trails[i].latitude;
+                            trailCoord.long = response.trails[i].longitude;
+                            trailLocation.push(trailCoord);
+
                         } else {
                             ;
                         }
                     }
+                    setmarkers(trailLocation);
                     initMap(lat, lon);
                 });
             })
         })
     }
 
-function initMap(lati, long){
-L.mapquest.key = 'cm7WzOvDimLpim8JOVFjDAfuIwV2e5h4';
 
-// 'map' refers to a <div> element with the ID map
-L.mapquest.map('map', {
-    center: [lati, long],
-    layers: L.mapquest.tileLayer('map'),
-    zoom: 12
-});
-}
+    function initMap(lati, long) {
+        L.mapquest.key = 'cm7WzOvDimLpim8JOVFjDAfuIwV2e5h4';
+
+        //  "https://www.mapquestapi.com/staticmap/v5/map?key="+L.mapquest.key+"&center=Boston,MA&size=200,200@2x"
+        //     https: //www.mapquestapi.com/staticmap/v5/map?key=KEY&center=Boston,MA&size=@2x
+
+        // 'map' refers to a <div> element with the ID map
+        L.mapquest.map('map', {
+            center: [lati, long],
+            layers: L.mapquest.tileLayer('map'),
+            zoom: 12.
+
+        });
+
+    }
+
+    function setmarkers(array) {
+        console.log(trailLocation);
+        for (var i = 0; i < array.length; i++) {
+            console.log(array);
+            L.marker([array[i].lat, array[i].lon], {
+                icon: L.mapquest.icons.marker(),
+                draggable: false
+            }).addTo(map);
+        }
+
+    }
     // setting button clicks to specific functions
     $("#no-gps").on("click", noGps)
     $("#gps").on("click", gps)
