@@ -11,29 +11,28 @@
 
 </head>
 
-<body class="hero is-fullheight has-background-info">
-  <header>
-    <section class="container"></section>
-    <button id="myFavorites" class="button is-link is-rounded favBtn">Favorites</button>
-    <img class="image" src="./assets/images/hiking-walking-trails.jpg">
-    <span class="app-title has-text-white">Happy Trails</span>
+<body class="hero has-background-info is-fullheight">
+  
+  <header class="hero-head">
+    <div style="background-image: url('hiking-walking-trails.jpg');" class="container headImage mb-6">
+    <button id="myFavorites" class="button is-rounded favBtn mt-2 mr-2 has-background-danger-dark" ><i class="fa fa-heart-o" aria-hidden="true"></i>&nbsp Favorites</button>
+    <span class="appTitle has-text-white">Happy Trails</span>
     </section>
   </header>
 
-  <main class="hero">
-    <section id="weatherSection">
-      <section id="hourlyWeather" class="columns description temperature"></section>
+  <main class="hero-body">
+    <section id="weatherSection columns">
+      <section id="hourlyWeather" class="column description temperature"></section>
       <section id="sunrise"></section>
       <section id="sunset"></section>
     </section>
 
-    <div id="userCity">
-      <form id="location-request">
-
-        <input type="text" id="city" placeholder="Please enter a city if you didn't allow location.">
-        <button type="submit" id="cityName">Submit</button>
+    <section id="userCity" class="column is-full">
+      <form id="location-request" class="columns is-centered">
+        <input type="text" id="city" placeholder="Please Enter a City" class="column is-one-third input is-focused">
+        <button type="submit" id="cityName" class="test">Submit</button>
       </form>
-    </div>
+    </section>
 
     <section id="hikingParameters" class="hidden">
       <p>How many miles are you willing to travel to get to your hiking trail?</p>
@@ -97,6 +96,8 @@
       </section>
     </section>
   </main>
+
+  <footer class="hero-foot"></footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
