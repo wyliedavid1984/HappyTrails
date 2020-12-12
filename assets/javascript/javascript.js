@@ -1,16 +1,23 @@
 $(document).ready(function () {
 
-    
+
     var userDistance;
     var timeHike;
     var lat;
     var lon;
-console.log("I loaded")
+    var map;
+    var trailLocation = [];
+    var trailCoord = {
+        lat: "",
+        long: "",
+    }
+
+
     function getLocation() {
         // Make sure browser supports this feature
         if (navigator.geolocation) {
             // Provide our showPosition() function to getCurrentPosition
-            navigator.geolocation.getCurrentPosition(showPosition);
+            navigator.geolocation.getCurrentPosition(showPosition, console.log);
         } else {
             alert("Geolocation is not supported by this browser.");
         }
@@ -24,79 +31,96 @@ console.log("I loaded")
         lon = position.coords.longitude;
 
         console.log("Your coordinates are Latitude: " + lat + " Longitude " + lon);
-
+        // if user blocks show location
         if (!position) {
-            alert()
+            alert("You didn't share you're location.")
             return
-        } else {
-            noGps()
         }
     }
-    $("#no-gps").on("click", noGps)
-    $("#gps").on("click", gps)
 
+
+    // this function used the parameter 
     function gps(e) {
         e.preventDefault();
-        getLocation();
+        // calling function to get user lat and lon
         console.log("gps");
+        getLocation();
+
+        // hiding previous div and show the next
         $("#userCity").addClass("hidden");
         $("#hikingParameters").removeClass("hidden");
+
         $(document).on("click", "#parameters", function (e) {
             e.preventDefault();
 
+            // setting value to variables
             timeHike = $(".lengthTime").val();
-            console.log(timeHike);
             userDistance = $("#radius").val();
-            console.log(userDistance);
-            console.log(typeof (userDistance));
+            var hikeLength = timeHike / 12;
+            var hikeURL = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon=" + lon + "&maxDistance=" + userDistance + "&key=200992005-36cef2b40b13fda0780742aba62d29e7";
+
+            // hiding previous div and show the next
             $("#hikingParameters").addClass("hidden");
             $("#userTrails").removeClass("hidden");
 
-            var hikeURL = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon=" + lon + "&maxDistance=" + userDistance + "&key=200992005-36cef2b40b13fda0780742aba62d29e7";
-            console.log(hikeURL);
+            // ajax request to get api data
             $.ajax({
                 url: hikeURL,
                 method: "GET"
             }).then(function (response) {
                 console.log(response);
-                for (var i = 0; i < 4; i++) {
-                    $("#trailName" + i).append(response.trails[i])
+
+                // looping through api to gather relevant data.
+                for (var i = 0; i < response.trails.length; i++) {
+                    if (response.trails[i].length < hikeLength) {
+                        $("#trailName" + i).prepend("Trail Name: " + response.trails[i].name + "<br>");
+                        $("#length" + i).append("Trail Length: " + response.trails[i].length + "<br>");
+                        $("#difficulty" + i).append("Difficulty: " + response.trails[i].difficulty + "<br><br>");
+                        trailCoord.lat = response.trails[i].latitude;
+                        trailCoord.long = (response.trails[i].longitude);
+                        trailLocation.push(trailCoord);
+                    }
                 }
+                setmarkers(trailLocation);
+                initMap(lat, lon);
             })
         });
     }
 
-
-
+    // function that takes in parameter if the user doesn't want to share location
     function noGps(e) {
         e.preventDefault();
         console.log("no gps");
         // we are getting the value of the city from the user.
         var city = $("#city").val();
         var weatherKey = "34af04e7087783be92496c2a33100782";
-
         var latLonURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + weatherKey;
+        // hiding previous div and show the next
         $("#userCity").addClass("hidden");
         $("#hikingParameters").removeClass("hidden");
         // first ajax to get the city's lat and lon
         $(document).on("click", "#parameters", function (e) {
+
             e.preventDefault();
+            // setting values to variables to get lat and lon
             console.log("hello")
             timeHike = $(".lengthTime").val();
-            console.log(timeHike);
             userDistance = $("#radius").val();
-            console.log(userDistance);
+
+            // hiding previous div and show the next
             $("#hikingParameters").addClass("hidden");
             $("#userTrails").removeClass("hidden");
+
+            // ajax request to get api data
             $.ajax({
                 url: latLonURL,
                 method: "GET"
             }).then(function (res) {
-                // setting the lon and lat variable to the city's lat and lon
+
+                // setting the all variables to get hiking trails
                 var lon = JSON.stringify(res.coord.lon);
                 var lat = JSON.stringify(res.coord.lat);
                 var hikeLength = timeHike / 12;
-                console.log(length);
                 var hikeURL = "https://www.hikingproject.com/data/get-trails?lat=" + lat + "&lon=" + lon + "&maxDistance=" + userDistance + "&key=200992005-36cef2b40b13fda0780742aba62d29e7";
 
                 $.ajax({
@@ -104,18 +128,59 @@ console.log("I loaded")
                     method: "GET"
                 }).then(function (response) {
                     console.log(response);
+
+                    // looping through api to gather relevant data.
                     for (var i = 0; i < response.trails.length; i++) {
+                        console.log(response.trails[i]);
                         if (response.trails[i].length < hikeLength) {
                             $("#trailName" + i).prepend("Trail Name: " + response.trails[i].name + "<br>")
                             $("#length" + i).append("Trail Length: " + response.trails[i].length + "<br>");
                             $("#difficulty" + i).append("Difficulty: " + response.trails[i].difficulty + "<br><br>")
+                            trailCoord.lat = response.trails[i].latitude;
+                            trailCoord.long = response.trails[i].longitude;
+                            trailLocation.push(trailCoord);
+
+                        } else {
+                            ;
                         }
                     }
+                    setmarkers(trailLocation);
+                    initMap(lat, lon);
                 });
             })
         })
     }
 
 
+    function initMap(lati, long) {
+        L.mapquest.key = 'cm7WzOvDimLpim8JOVFjDAfuIwV2e5h4';
+
+        //  "https://www.mapquestapi.com/staticmap/v5/map?key="+L.mapquest.key+"&center=Boston,MA&size=200,200@2x"
+        //     https: //www.mapquestapi.com/staticmap/v5/map?key=KEY&center=Boston,MA&size=@2x
+
+        // 'map' refers to a <div> element with the ID map
+        L.mapquest.map('map', {
+            center: [lati, long],
+            layers: L.mapquest.tileLayer('map'),
+            zoom: 12.
+
+        });
+
+    }
+
+    function setmarkers(array) {
+        console.log(trailLocation);
+        for (var i = 0; i < array.length; i++) {
+            console.log(array);
+            L.marker([array[i].lat, array[i].lon], {
+                icon: L.mapquest.icons.marker(),
+                draggable: false
+            }).addTo(map);
+        }
+
+    }
+    // setting button clicks to specific functions
+    $("#no-gps").on("click", noGps)
+    $("#gps").on("click", gps)
 
 })
