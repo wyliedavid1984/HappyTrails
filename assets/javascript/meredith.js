@@ -1,23 +1,71 @@
 
 
-$(document).ready(function () {
+$( document ).ready(function() {
+    console.log( "ready!" );
+});
+
 
 
  //create an empty array to store the user's input (favorite hikes)
  var allFavorites = []; 
  
- const saveHike = (ev) =>{
+//  const saveHike = (ev) =>{
+//     ev.preventDefault();
+//     let hike = favoriteBtn.value();
+//  }
 
-    ev.preventDefault();
+ $(".favoriteBtn").on("click", function (){
+    console.log("I'M A WORKING BUTTON!",$(this).parent().attr("id"));
+    var value =  $(this).siblings("input").val();
 
-    let hike = favoriteBtn.value();
- }
+    //save to localstorage
+   //  localStorage.setItem(time, value);
+
+})
 
  //Call the function so that when the user clicks the "favorite" heart icon next to 
  //a hike they would like to save, the name of the hike will be saved. 
- $(".favoriteBtn").click (saveHike){
-    console.log("working button")
- }
+//  $(".favoriteBtn").click (saveHike) (function());
+//  {
+//     console.log("working button");
+//     var favorite = $(this).parent.val();
+//     console.log (favorite);
+
+//  }
+
+// var button1= faveHike1
+// var button2= faveHike2
+// var button3= faveHike3
+// var button4= faveHike4
+// var button5= faveHike5
+
+//  $("#faveHike1").click(function() {
+//     console.log ($(this).parent("first").html);
+
+//  })
+
+// $('.faveHike2').click(function() {
+//     console.log('clicked2');
+//     $(this).parent.val();
+// })
+
+// $('.faveHike3').click(function() {
+//         console.log('clicked3');
+//         $(this).parent.val();
+// })
+
+// $('.faveHike4').click(function() {
+//         console.log('clicked4');
+//         $(this).parent.val();
+// })
+
+// $('.faveHike5').click(function() {
+//          console.log('clicked5');
+//         $(this).parent.val();
+// });
+ 
+
+ 
 
 //  allFavorites.push (hike);
 
@@ -109,4 +157,4 @@ $(document).ready(function () {
 
 
 
-}//Closing the ready function 
+// });//Closing the ready function 
