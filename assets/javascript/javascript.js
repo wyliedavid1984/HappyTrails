@@ -66,7 +66,7 @@ $(document).ready(function () {
                 console.log(response);
             
                 // looping through api to gather relevant data.
-                for (var i = 0; i < 4; i++) {
+                for (var i = 0; i < response.trails.length; i++) {
                     if (response.trails[i].length < hikeLength) {
                         $("#trailName" + i).prepend("Trail Name: " + response.trails[i].name + "<br>")
                         $("#length" + i).append("Trail Length: " + response.trails[i].length + "<br>");
@@ -120,10 +120,13 @@ $(document).ready(function () {
             
                     // looping through api to gather relevant data.
                     for (var i = 0; i < response.trails.length; i++) {
+                        console.log(response.trails[i]);
                         if (response.trails[i].length < hikeLength) {
                             $("#trailName" + i).prepend("Trail Name: " + response.trails[i].name + "<br>")
                             $("#length" + i).append("Trail Length: " + response.trails[i].length + "<br>");
                             $("#difficulty" + i).append("Difficulty: " + response.trails[i].difficulty + "<br><br>")
+                        }else{
+                            ;
                         }
                     }
                 });
