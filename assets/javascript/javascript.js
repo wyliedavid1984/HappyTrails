@@ -16,6 +16,7 @@ $(document).ready(function () {
     function getLocation() {
         // Make sure browser supports this feature
         if (navigator.geolocation) {
+            navigator.permissions.query({name:"geolocation"}).then(function(result){RTCStatsReport(result.state)})
             // Provide our showPosition() function to getCurrentPosition
             navigator.geolocation.getCurrentPosition(showPosition, console.log);
         } else {
@@ -137,11 +138,11 @@ $(document).ready(function () {
                             $("#trailName" + i).prepend("Trail Name: " + response.trails[i].name + "<br>")
                             $("#length" + i).append("Trail Length: " + response.trails[i].length + "<br>");
                             $("#difficulty" + i).append("Difficulty: " + response.trails[i].difficulty + "<br><br>")
-                            trailCoord.lat = response.trails[i].latitude;
-                            trailCoord.long = response.trails[i].longitude;
+                            trailCoord.lat = response.trails.i.latitude;
+                            trailCoord.long = response.trails.i.longitude;
                             console.log("inloop "+trailCoord);
                             trailLocation.push(trailCoord);
-                            console.log("endLoop "+"hello"[i]);
+                            console.log("endLoop "+"hello"+i);
                         }
                     }
                     initMap(lat, lon);
