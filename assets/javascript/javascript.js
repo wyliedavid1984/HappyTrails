@@ -7,12 +7,53 @@ $(document).ready(function () {
     var lon;
     var map;
     var trailLocation = [];
-    var trailCoord = {
-        lat: "",
-        long: "",
-    }
-    var weatherKey = "34af04e7087783be92496c2a33100782";
+    // var weatherKey = "34af04e7087783be92496c2a33100782";
+    var weatherKey = "43150bac67a6b6bc9ffc3d398fb24e60";
 
+    // setting button clicks to specific functions
+    $("#gps").on("click", gps);
+
+    // this is for if the user doesn't enter anything in the fields.
+    $("#zipCode").on("click", function (event) {
+        event.preventDefault();
+
+        if ($("#zip").val() === "") {
+            console.log("hizipno")
+            $("#userCity").addClass("hidden");
+            $("#error").removeClass("hidden");
+            setTimeout(function () {
+                location.reload();
+            }, 1000);
+        } else {
+            console.log('hizip')
+            // hiding previous div and show the next
+            $("#userCity").addClass("hidden");
+            $("#hikingParameters").removeClass("hidden");
+            zipCode();
+
+        }
+    });
+
+    // this is for if the user doesn't enter anything in the fields.
+    $("#no-gps").on("click", function (event) {
+        event.preventDefault();
+        if ($("#city").val() === "") {
+            console.log("hicityno")
+            $("#userCity").addClass("hidden");
+            $("#error").removeClass("hidden");
+            setTimeout(function () {
+                location.reload();
+            }, 1000);
+        } else {
+            // hiding previous div and show the next
+            console.log("hicity")
+            $("#userCity").addClass("hidden");
+            $("#hikingParameters").removeClass("hidden");
+            noGps();
+        }
+    });
+
+    // uses the geolocation built in func to get lat and long coordinates
     function getLocation() {
         // Make sure browser supports this feature
         if (navigator.geolocation) {
@@ -26,12 +67,11 @@ $(document).ready(function () {
 
     // This will get called after getCurrentPosition()
     function showPosition(position) {
-        console.log(position);
+
         // Grab coordinates from the given object
         lat = position.coords.latitude;
         lon = position.coords.longitude;
 
-        console.log("Your coordinates are Latitude: " + lat + " Longitude " + lon);
         // if user blocks show location
         if (!position) {
             alert("You didn't share you're location.")
@@ -42,8 +82,8 @@ $(document).ready(function () {
     // this function used the parameter 
     function gps(e) {
         e.preventDefault();
+
         // calling function to get user lat and lon
-        console.log("gps");
         getLocation();
 
         // hiding previous div and show the next
@@ -54,127 +94,56 @@ $(document).ready(function () {
             e.preventDefault();
 
             // setting value to variables
-
             timeHike = $(".lengthTime").val();
             userDistance = $("#radius").val();
-            var hikeLength = timeHike / 12;
-            var hikeURL = `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=${userDistance}&key=200992005-36cef2b40b13fda0780742aba62d29e7`;
 
             // hiding previous div and show the next
             $("#hikingParameters").addClass("hidden");
             $("#userTrails").removeClass("hidden");
 
-            // ajax request to get api data
-            $.ajax({
-                url: hikeURL,
-                method: "GET"
-            }).then(function (response) {
-                console.log(response);
-                // looping through api to gather relevant data.
-                for (var i = 0; i < response.trails.length; i++) {
-                    // looping through api to gather relevant data.
-                    if (response.trails[i].length < hikeLength) {
-                        $("#trailName" + i).prepend("Trail Name: " + responsep.trails[i].name + "<br>")
-                        $("#length" + i).append("Trail Length: " + responsep.trails[i].length + "<br>");
-                        $("#difficulty" + i).append("Difficulty: " + responsep.trails[i].difficulty + "<br><br>")
-                        var myObj = {}
-                        myObj.lat = response.trails[i].latitude
-                        myObj.long = response.trails[i].longitude
-                        trailLocation.push(myObj)
-                    }
-                }
-                console.log(trailLocation);
-                initMap(lat, lon);
-            })
+            var hikeURL = `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=${userDistance}&key=200992005-36cef2b40b13fda0780742aba62d29e7`;
+
+            // ajax call to create the map and trails
+
+            createMapTrails(hikeURL, lat, lon);
         });
     }
 
     // another user input function takes in zip code.
-    function zipCode(e) {
-        e.preventDefault();
-        console.log("zipcode")
+    function zipCode() {
+
+
+        // user input
         var zip = $("#zip").val();
-        var countryCode = "us";
-        var zipURL = `https://api.openweathermap.org/data/2.5/weather?zip=${zip},${countryCode}&appid=${weatherKey}`;
+        console.log(zip);
 
-        //hides first section and show second section 
-        $("#userCity").addClass("hidden");
-        $("#hikingParameters").removeClass("hidden");
-
-        // first ajax to get the city's lat and lon
-        $(document).on("click", "#parameters", function (e) {
-            e.preventDefault();
-            console.log("zipcode1");
-
-            // getting the users data
-            timeHike = $(".lengthTime").val();
-            userDistance = $("#radius").val();
-
-            // hiding previous div and show the next
-            $("#hikingParameters").addClass("hidden");
-            $("#userTrails").removeClass("hidden");
-
-            // ajax request to get api data
-            $.ajax({
-                url: zipURL,
-                method: "GET"
-            }).then(function (res) {
-                console.log(res);
-                console.log("zipCode2")
-
-                // setting the all variables to get hiking trails
-                var lon = JSON.stringify(res.coord.lon);
-                var lat = JSON.stringify(res.coord.lat);
-                var hikeLength = timeHike / 12;
-                var hikeURL = `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=${userDistance}&key=200992005-36cef2b40b13fda0780742aba62d29e7`;
-
-                // this request gets the hiking trails
-                $.ajax({
-                    url: hikeURL,
-                    method: "GET"
-                }).then(function (response) {
-                    console.log("zipCode3");
-
-                    // looping through api to gather relevant data.
-                    for (var i = 0; i < response.trails.length; i++) {
-                        // looping through api to gather relevant data.
-                        if (response.trails[i].length < hikeLength) {
-                            $("#trailName" + i).prepend("Trail Name: " + response.trails[i].name + "<br>")
-                            $("#length" + i).append("Trail Length: " + response.trails[i].length + "<br>");
-                            $("#difficulty" + i).append("Difficulty: " + response.trails[i].difficulty + "<br><br>")
-                            var myObj = {}
-                            myObj.lat = response.trails[i].latitude
-                            myObj.long = response.trails[i].longitude
-                            trailLocation.push(myObj);
-
-                        }
-                    }   
-                    console.log(trailLocation);
-                    initMap(lat, lon);
-
-                });
-            })
-        })
+        // making a url with user input
+        var zipURL = `https://api.openweathermap.org/data/2.5/weather?zip=${zip},us&appid=${weatherKey}`;
+        // getting together all map, markers, and trail data to append to dom.
+        getLocal(zipURL)
 
     }
 
     // function that takes in parameter if the user doesn't want to share location
-    function noGps(e) {
-        e.preventDefault();
-        console.log("no gps");
+    function noGps() {
+
 
         // we are getting the value of the city from the user.
         var city = $("#city").val();
+        console.log(city);
 
+        // Making a url with user input
         var latLonURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherKey}`;
+        // getting together all map, markers, and trail data to append to dom.
+        getLocal(latLonURL);
+    }
 
-        // hiding previous div and show the next
-        $("#userCity").addClass("hidden");
-        $("#hikingParameters").removeClass("hidden");
+    // this function will get lat and long to put together a hiking URL
+    function getLocal(URL) {
 
         // first ajax to get the city's lat and lon
         $(document).on("click", "#parameters", function (e) {
-            console.log("no gps1")
+
             e.preventDefault();
 
             // setting values to variables to get lat and lon
@@ -187,96 +156,94 @@ $(document).ready(function () {
 
             // ajax request to get api data
             $.ajax({
-                url: latLonURL,
+                url: URL,
                 method: "GET"
             }).then(function (res) {
-                console.log("no gps2")
+
+                console.log(res)
 
                 // setting the all variables to get hiking trails
                 var lon = JSON.stringify(res.coord.lon);
                 var lat = JSON.stringify(res.coord.lat);
-                var hikeLength = timeHike / 12;
+                // url to get hiking api
                 var hikeURL = `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=${userDistance}&key=200992005-36cef2b40b13fda0780742aba62d29e7`;
 
-                // gets all the trails from the hiking api
-                $.ajax({
-                    url: hikeURL,
-                    method: "GET"
-                }).then(function (response) {
-                    console.log("no gps3");
-                    for (var i = 0; i < response.trails.length; i++) {
+                createMapTrails(hikeURL, lat, lon);
 
-                        // looping through api to gather relevant data.
-                        if (response.trails[i].length < hikeLength) {
-                            $("#trailName" + i).prepend("Trail Name: " + response.trails[i].name + "<br>")
-                            $("#length" + i).append("Trail Length: " + response.trails[i].length + "<br>");
-                            $("#difficulty" + i).append("Difficulty: " + response.trails[i].difficulty + "<br><br>")
-                            var myObj = {}
-                            myObj.lat = response.trails[i].latitude
-                            myObj.long = response.trails[i].longitude
-                            trailLocation.push(myObj)
-                        }
-                    }
-                    console.log(trailLocation);
-                    initMap(lat, lon);
-
-                });
             })
         })
     }
 
+    // this function uses the hike url to create our map and trail list
+    function createMapTrails(hikeURL, lat, lon) {
 
+        // gets all the trails from the hiking api
+        $.ajax({
+            url: hikeURL,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+
+            // looping through api to gather relevant data.
+            trailList(response);
+            // makes map and creates markers
+            console.log(lat + " and " + lon)
+            initMap(lat, lon);
+
+        });
+    }
+
+    // This get all trail data and pushes it to the dom.
+    function trailList(resp) {
+        var hikeLength = timeHike / 12;
+        for (var i = 0; i < resp.trails.length; i++) {
+
+            // looping through api to gather relevant data.
+            if (resp.trails[i].length < hikeLength) {
+                $("#trailName" + i).prepend("Trail Name: " + resp.trails[i].name + "<br>");
+                $("#length" + i).append("Trail Length: " + resp.trails[i].length + "<br>");
+                $("#difficulty" + i).append("Difficulty: " + resp.trails[i].difficulty + "<br><br>");
+                var myObj = {};
+                myObj.lat = resp.trails[i].latitude;
+                myObj.long = resp.trails[i].longitude;
+                myObj.name = resp.trails[i].name;
+                trailLocation.push(myObj);
+            }
+        }
+    }
+
+    // creates the map and calls the marker function
     function initMap(lati, long) {
+        // the key for access to mapquest api
         L.mapquest.key = 'cm7WzOvDimLpim8JOVFjDAfuIwV2e5h4';
 
         // 'map' refers to a <div> element with the ID map
         map = L.mapquest.map('map', {
             center: [lati, long],
             layers: L.mapquest.tileLayer('map'),
-            zoom: 10,
+            zoom: 12,
         });
         setmarkers(trailLocation);
     }
 
+    // set all marker locations.
     function setmarkers(array) {
-        console.log("trailLocation", trailLocation);
-        console.log("argument:", array)
-        for (var i = 0; i < array.length; i++) {
-            L.marker([array[i].lat, array[i].long], {
-                icon: L.mapquest.icons.marker(),
+        // loops through the array to set markers
+        for (var i = 0; i < array.length - 1; i++) {
+            L.mapquest.textMarker([array[i].lat, array[i].long], {
+                // title for only hover effect
+                text: array[i].name,
+                position: "right",
+                icon: {
+                    primaryColor: "#333333",
+                    secondaryColor: "#111111",
+                    size: "md"
+                },
                 draggable: false
             }).addTo(map);
         }
     }
 
-    // This get all trail data and pushes it to the dom.
-    function trailList(resp) {
-        for (var i = 0; i < resp.trails.length; i++) {
-            // looping through api to gather relevant data.
-            
-            if (resp.trails[i].length < hikeLength) {
-                $("#trailName" + i).prepend("Trail Name: " + resp.trails[i].name + "<br>")
-                $("#length" + i).append("Trail Length: " + resp.trails[i].length + "<br>");
-                $("#difficulty" + i).append("Difficulty: " + resp.trails[i].difficulty + "<br><br>")
-                var myObj = {}
-                myObj.lat = response.trails[i].latitude
-                myObj.long = response.trails[i].longitude
-                trailLocation.push(myObj)
-            }
-        }
-    }
 
-    // this function will get lat and long to put together a hiking URL
-    function getLocal() {
-        var lon = JSON.stringify(res.coord.lon);
-        var lat = JSON.stringify(res.coord.lat);
-        var hikeLength = timeHike / 12;
-        var hikeURL = `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=${userDistance}&key=200992005-36cef2b40b13fda0780742aba62d29e7`;
-    }
-
-    // setting button clicks to specific functions
-    $("#no-gps").on("click", noGps);
-    $("#gps").on("click", gps);
-    $("#zipCode").on("click", zipCode);
 
 })
