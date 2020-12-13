@@ -7,8 +7,9 @@ $(document).ready(function () {
     var lon;
     var map;
     var trailLocation = [];
-    var weatherKey = "34af04e7087783be92496c2a33100782";
-  
+    // var weatherKey = "34af04e7087783be92496c2a33100782";
+    var weatherKey = "43150bac67a6b6bc9ffc3d398fb24e60";
+
     // setting button clicks to specific functions
     $("#gps").on("click", gps);
 
@@ -17,14 +18,14 @@ $(document).ready(function () {
         event.preventDefault();
 
         if ($("#zip").val() === "") {
-            console.log("hizip")
+            console.log("hizipno")
             $("#userCity").addClass("hidden");
             $("#error").removeClass("hidden");
             setTimeout(function () {
                 location.reload();
             }, 1000);
         } else {
-            console.log('hizipno')
+            console.log('hizip')
             // hiding previous div and show the next
             $("#userCity").addClass("hidden");
             $("#hikingParameters").removeClass("hidden");
@@ -37,7 +38,7 @@ $(document).ready(function () {
     $("#no-gps").on("click", function (event) {
         event.preventDefault();
         if ($("#city").val() === "") {
-            console.log("hicity")
+            console.log("hicityno")
             $("#userCity").addClass("hidden");
             $("#error").removeClass("hidden");
             setTimeout(function () {
@@ -45,10 +46,9 @@ $(document).ready(function () {
             }, 1000);
         } else {
             // hiding previous div and show the next
-            console.log("hicityno")
+            console.log("hicity")
             $("#userCity").addClass("hidden");
             $("#hikingParameters").removeClass("hidden");
-
             zipCode();
         }
     });
@@ -115,6 +115,7 @@ $(document).ready(function () {
 
         // user input
         var zip = $("#zip").val();
+        console.log(zip);
 
         // making a url with user input
         var zipURL = `https://api.openweathermap.org/data/2.5/weather?zip=${zip},us&appid=${weatherKey}`;
@@ -129,6 +130,7 @@ $(document).ready(function () {
 
         // we are getting the value of the city from the user.
         var city = $("#city").val();
+        console.log(city);
 
         // Making a url with user input
         var latLonURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherKey}`;
