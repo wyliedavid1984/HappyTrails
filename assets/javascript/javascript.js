@@ -77,11 +77,13 @@ $(document).ready(function () {
                         $("#trailName" + i).prepend("Trail Name: " + responsep.trails[i].name + "<br>")
                         $("#length" + i).append("Trail Length: " + responsep.trails[i].length + "<br>");
                         $("#difficulty" + i).append("Difficulty: " + responsep.trails[i].difficulty + "<br><br>")
-                        trailCoord.lat = response.trails[i].latitude;
-                        trailCoord.long = response.trails[i].longitude;
-                        trailLocation.push(trailCoord);
+                        var myObj = {}
+                        myObj.lat = response.trails[i].latitude
+                        myObj.long = response.trails[i].longitude
+                        trailLocation.push(myObj)
                     }
                 }
+                console.log(trailLocation);
                 initMap(lat, lon);
             })
         });
@@ -140,11 +142,14 @@ $(document).ready(function () {
                             $("#trailName" + i).prepend("Trail Name: " + response.trails[i].name + "<br>")
                             $("#length" + i).append("Trail Length: " + response.trails[i].length + "<br>");
                             $("#difficulty" + i).append("Difficulty: " + response.trails[i].difficulty + "<br><br>")
-                            trailCoord.lat = response.trails[i].latitude;
-                            trailCoord.long = response.trails[i].longitude;
-                            trailLocation.push(trailCoord);
+                            var myObj = {}
+                            myObj.lat = response.trails[i].latitude
+                            myObj.long = response.trails[i].longitude
+                            trailLocation.push(myObj);
+
                         }
-                    }
+                    }   
+                    console.log(trailLocation);
                     initMap(lat, lon);
 
                 });
@@ -206,12 +211,13 @@ $(document).ready(function () {
                             $("#trailName" + i).prepend("Trail Name: " + response.trails[i].name + "<br>")
                             $("#length" + i).append("Trail Length: " + response.trails[i].length + "<br>");
                             $("#difficulty" + i).append("Difficulty: " + response.trails[i].difficulty + "<br><br>")
-                            trailCoord.lat = response.trails[i].latitude;
-                            trailCoord.long = response.trails[i].longitude;
-                            console.log(trailCoord);
-                            trailLocation.push(trailCoord);
+                            var myObj = {}
+                            myObj.lat = response.trails[i].latitude
+                            myObj.long = response.trails[i].longitude
+                            trailLocation.push(myObj)
                         }
                     }
+                    console.log(trailLocation);
                     initMap(lat, lon);
 
                 });
@@ -227,14 +233,14 @@ $(document).ready(function () {
         map = L.mapquest.map('map', {
             center: [lati, long],
             layers: L.mapquest.tileLayer('map'),
-            zoom: 12,
+            zoom: 10,
         });
-        setmarkers(trailLocation)
+        setmarkers(trailLocation);
     }
 
     function setmarkers(array) {
-        ;
-        console.log(trailLocation);
+        console.log("trailLocation", trailLocation);
+        console.log("argument:", array)
         for (var i = 0; i < array.length; i++) {
             L.marker([array[i].lat, array[i].long], {
                 icon: L.mapquest.icons.marker(),
@@ -247,16 +253,15 @@ $(document).ready(function () {
     function trailList(resp) {
         for (var i = 0; i < resp.trails.length; i++) {
             // looping through api to gather relevant data.
-            console.log("before" + resp.trails[i]);
+            
             if (resp.trails[i].length < hikeLength) {
                 $("#trailName" + i).prepend("Trail Name: " + resp.trails[i].name + "<br>")
                 $("#length" + i).append("Trail Length: " + resp.trails[i].length + "<br>");
                 $("#difficulty" + i).append("Difficulty: " + resp.trails[i].difficulty + "<br><br>")
-                trailCoord.lat = resp.trails[i].latitude;
-                trailCoord.long = resp.trails[i].longitude;
-                console.log("inloop " + trailCoord);
-                trailLocation.push(trailCoord);
-                console.log("endLoop " + "hello" + i);
+                var myObj = {}
+                myObj.lat = response.trails[i].latitude
+                myObj.long = response.trails[i].longitude
+                trailLocation.push(myObj)
             }
         }
     }
