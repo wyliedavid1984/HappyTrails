@@ -233,7 +233,7 @@ $(document).ready(function () {
         map = L.mapquest.map('map', {
             center: [lati, long],
             layers: L.mapquest.tileLayer('map'),
-            zoom: 10,
+            zoom: 12,
         });
         setmarkers(trailLocation);
     }
