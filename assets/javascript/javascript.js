@@ -29,8 +29,8 @@ $(document).ready(function () {
             // hiding previous div and show the next
             $("#userCity").addClass("hidden");
             $("#hikingParameters").removeClass("hidden");
+            zipCode();
 
-            noGps();
         }
     });
 
@@ -49,10 +49,10 @@ $(document).ready(function () {
             console.log("hicity")
             $("#userCity").addClass("hidden");
             $("#hikingParameters").removeClass("hidden");
-            zipCode();
+            noGps();
         }
     });
-    
+
     // uses the geolocation built in func to get lat and long coordinates
     function getLocation() {
         // Make sure browser supports this feature
@@ -111,7 +111,7 @@ $(document).ready(function () {
 
     // another user input function takes in zip code.
     function zipCode() {
-       
+
 
         // user input
         var zip = $("#zip").val();
@@ -126,7 +126,7 @@ $(document).ready(function () {
 
     // function that takes in parameter if the user doesn't want to share location
     function noGps() {
-       
+
 
         // we are getting the value of the city from the user.
         var city = $("#city").val();
@@ -140,7 +140,7 @@ $(document).ready(function () {
 
     // this function will get lat and long to put together a hiking URL
     function getLocal(URL) {
-        
+
         // first ajax to get the city's lat and lon
         $(document).on("click", "#parameters", function (e) {
 
