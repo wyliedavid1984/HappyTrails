@@ -74,6 +74,14 @@
         <!-- </section> -->
       </section>
     </section>
+    <section id="error" class="hidden">
+
+      <p>An error has occured please enter some data</p>
+
+    </section>
+    <section id="error2" class="hidden">
+      <p>An error has occured please make sure all fields are filled out.</p>
+    </section>
 
 
 
@@ -81,16 +89,17 @@
     <section id="hikingParameters" class="hidden">
       <p>How many miles are you willing to travel to get to your hiking trail?</p>
       <input type="text" id="radius"><br><br>
-
+      <form action="">
       <p>How long would you like to hike?</p>
-      <input type="radio" id="shortest" value="60" class="lengthTime">
+      <input type="radio" id="shortest" name="time" value="60" class="lengthTime">
       <label for="shortest">1/2hr-1 hour</label><br>
-      <input type="radio" id="medium" value="120" class="lengthTime">
+      <input type="radio" id="medium" name="time" value="120" class="lengthTime">
       <label for="medium">1-2 hours</label><br>
-      <input type="radio" id="longest" value="180" class="lengthTime">
+      <input type="radio" id="longest" name="time" value="180" class="lengthTime">
       <label for="longest">3+ hours</label><br><br>
 
       <button type="submit" id="parameters">Go Hiking!</button>
+    </form>
     </section>
 
     <!-- This section displays the trails that were found based on user input -->
@@ -148,6 +157,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <script src="./assets/javascript/javascript.js"></script>
+  <script src="./assets/javascript/meredith.js"></script>
+
 </body>
 
 </html>
