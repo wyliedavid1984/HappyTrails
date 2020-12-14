@@ -3,11 +3,14 @@ $(document).ready(function () {
 
   //Set up a function to list the user's favorite hikes that are in localStorage
 
-  var allFavorites = [] ||JSON.parse(localStorage.getItem("savedTrails"));
+  var allFavorites = [] 
 
   console.log(allFavorites);
+ allFavorites = JSON.parse(localStorage.getItem("savedTrails"));
 
-
+ if(allFavorites === null){
+   allFavorites = [];
+ }
   //Convert the string into a JSON object
 
 
@@ -38,7 +41,7 @@ $(document).ready(function () {
     //save values to localstorage
     allFavorites.push(value1);
     //   localStorage.setItem("trail1", value1);
-    localStorage.setItem("savedTrails", JSON.stringify(allFavorites));
+    localStorage.setItem("savedTrails", JSON.stringify(value1));
   });
 
   $("#faveHike1").on("click", function () {
@@ -48,7 +51,7 @@ $(document).ready(function () {
     }
     allFavorites.push(value2);
     //   localStorage.setItem("trail2", value2);
-    localStorage.setItem("savedTrails", JSON.stringify(allFavorites));
+    localStorage.setItem("savedTrails", JSON.stringify(value2));
   });
 
   $("#faveHike2").on("click", function () {
@@ -58,7 +61,7 @@ $(document).ready(function () {
     }
     allFavorites.push(value3);
     //   localStorage.setItem("trail3", value3);
-    localStorage.setItem("savedTrails", JSON.stringify(allFavorites));
+    localStorage.setItem("savedTrails", JSON.stringify(value3));
   });
 
   $("#faveHike3").on("click", function () {
@@ -68,17 +71,17 @@ $(document).ready(function () {
     }
     allFavorites.push(value4);
     //   localStorage.setItem("trail4", value4);
-    localStorage.setItem("savedTrails", JSON.stringify(allFavorites));
+    localStorage.setItem("savedTrails", JSON.stringify(value4));
   });
 
   $("#faveHike4").on("click", function () {
-    var value4 = {
+    var value5 = {
       trail: $("#trailName4").text().trim(),
       url: $("#link4").attr("href")
     }
-    allFavorites.push(value4);
+    allFavorites.push(value5;
     //   localStorage.setItem("trail4", value4);
-    localStorage.setItem("savedTrails", JSON.stringify(allFavorites));
+    localStorage.setItem("savedTrails", JSON.stringify(value5));
     console.log(allFavorites);
   });
 
