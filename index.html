@@ -75,34 +75,32 @@
       </section>
     </section>
 
-    <section id="error" class="hidden">
-
+    <section id="error" class="hidden has-background-danger has-text-white">
       <p>An error has occured please enter some data</p>
-
     </section>
-
-    <section id="error2" class="hidden">
+    <section id="error2" class="hidden has-background-danger has-text-white">
       <p>An error has occured please make sure all fields are filled out.</p>
     </section>
 
-
-
     <!-- This section ask user for hiking parameters -->
-    <section id="hikingParameters" class="hidden column is-fullheight has-text-centered">
-      <p>How many miles are you willing to travel to get to your hiking trail?</p>
-      <input type="text" id="radius"><br><br>
-      <form action="">
-        <p>How long would you like to hike?</p>
-        <input type="radio" id="shortest" name="time" value="60" class="lengthTime">
-        <label for="shortest">1/2hr-1 hour</label><br>
-        <input type="radio" id="medium" name="time" value="120" class="lengthTime">
-        <label for="medium">1-2 hours</label><br>
-        <input type="radio" id="longest" name="time" value="10000" class="lengthTime">
-        <label for="longest">3+ hours</label><br><br>
+    <section id="hikingParameters" class="column is-full hidden is-centered">
+      <Section class="column is-full has-text-centered">
+        <p>How many miles are you willing to travel to get to your hiking trail?</p>
+        <section class="column is-full">
+          <input type="text" id="radius" class="input is-focused"><br><br>
+        </section>
+        <form action="">
+          <p>How long would you like to hike?</p>
+          <input type="radio" id="shortest" name="time" value="60" class="lengthTime">
+          <label for="shortest">1/2hr-1 hour</label><br>
+          <input type="radio" id="medium" name="time" value="120" class="lengthTime">
+          <label for="medium">1-2 hours</label><br>
+          <input type="radio" id="longest" name="time" value="10000" class="lengthTime">
+          <label for="longest">3+ hours</label><br><br>
 
-        <button type="submit" id="parameters">Go Hiking!</button>
-      </form>
-
+          <button type="submit" id="parameters" class="button is-link is-inverted">Go Hiking!</button>
+        </form>
+      </Section>
     </section>
 
     <!-- This section displays the trails that were found based on user input -->
