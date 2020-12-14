@@ -4,7 +4,7 @@ var url = "http://api.openweathermap.org/data/2.5/weather?";
 var apiKey = "34af04e7087783be92496c2a33100782";
 var apiUrl;
 
-var xmlhttp = new XMLHttpRequest();
+var xmlhttps = new XMLHttpRequest();
 
 var latitude = 0.0;
 var longitude = 0.0;
@@ -21,6 +21,8 @@ function getLocation() {
 
 
 
+
+
 function savePosition(position) {
     latitude = position.coords.latitude,
     longitude = position.coords.longitude;
@@ -31,9 +33,10 @@ function savePosition(position) {
 }
 
 
+
 function getWeather(url) {
 
-    xmlhttp.onreadystatechange = function (){
+    xmlhttps.onreadystatechange = function (){
 
         if (this.status == 200 && this.readyState == 4) {
             console.log("Info: "+this.responseText);
@@ -49,8 +52,8 @@ function getWeather(url) {
     };
 
     console.log(apiUrl);
-    xmlhttp.open("GET", apiUrl, true);
-    xmlhttp.send();
+    xmlhttps.open("GET", apiUrl, true);
+    xmlhttps.send();
 }
 
 function showWeather(info){
@@ -111,6 +114,8 @@ function citylocation (){
         
     })
 }
+
+    
 
     
 
