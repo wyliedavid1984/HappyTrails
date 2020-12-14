@@ -36,11 +36,17 @@
   <!-- Main body section -->
   <main class="column is-fullheight is-centered">
     <!-- This section displays the weather forecast -->
-    <section id="weatherSection columns">
-      <section id="hourlyWeather" class="column description temperature"></section>
-      <section id="sunrise"></section>
-      <section id="sunset"></section>
-    </section>
+     <p class="location"></p>
+
+    <div id="clouds"></div>
+
+    <div id="weather-content">
+        <div id="weather-bg">
+            <div id="geo-pos"></div>
+            <div id="weather-icon"></div>
+            <div id="weather-value"></div>
+        </div>
+    </div>
 
     <!-- This section displays an input for user city or requests to use user location -->
     <section id="userCity">
