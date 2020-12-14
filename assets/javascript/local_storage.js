@@ -1,6 +1,10 @@
 $(document).ready(function () {
   console.log("ready!");
 
+    //Storing the array of user favorite hikes.
+    var allFavorites = [];
+    console.log(allFavorites);
+
   //Setting up the functions to save favorite trails to local storage
   $("#faveHike0").on("click", function () {
     var value1 = {
@@ -48,10 +52,6 @@ $(document).ready(function () {
     //   localStorage.setItem("trail4", value4);
     localStorage.setItem("savedTrails", JSON.stringify(allFavorites));
   });
-
-  //Storing the array of user favorite hikes.
-  var allFavorites = [];
-  console.log(allFavorites);
 
   //Set up a function to list the user's favorite hikes that are in localStorage
 
