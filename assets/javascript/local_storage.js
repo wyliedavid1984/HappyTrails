@@ -1,6 +1,13 @@
 $(document).ready(function () {
   console.log("ready!");
 
+    var allFavorites = [];
+    console.log(allFavorites);
+
+    //Set up a function to list the user's favorite hikes that are in localStorage
+
+    //Convert the string into a JSON object
+    allFavorites = JSON.parse(localStorage.getItem("savedTrails"));
 $("#myFavorites").on("click", function () {
     if (allFavorites == null) {
       allFavorites = [];
@@ -17,14 +24,6 @@ $("#myFavorites").on("click", function () {
     // $("<p>").text(allFavorites).appendTo(".modal-content");
     // console.log(allFavorites);
   });
-
-    var allFavorites = [];
-    console.log(allFavorites);
-
-    //Set up a function to list the user's favorite hikes that are in localStorage
-
-    //Convert the string into a JSON object
-    allFavorites = JSON.parse(localStorage.getItem("savedTrails"));
 
   //Setting up the functions to save favorite trails to local storage
   $("#faveHike0").on("click", function () {
