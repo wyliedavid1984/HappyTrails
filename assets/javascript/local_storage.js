@@ -1,41 +1,48 @@
 $(document).ready(function () {
     console.log("ready!");
   
-  
+   
   //Setting up the functions to save favorite trails to local storage 
-    $("#faveHike1").on("click", function () {
-      console.log("I'M A WORKING BUTTON!", $("#trailName0").text());
-      var value1 = $("#trailName0").html();
+    $("#faveHike0").on("click", function () {
+
+
+      console.log("I'M A WORKING BUTTON!", $("#trailName0").text().trim());
+      var value1 = $("#trailName0").text().trim();
       //save values to localstorage
       allFavorites.push(value1);
     //   localStorage.setItem("trail1", value1);
     localStorage.setItem("savedTrails", JSON.stringify(allFavorites));
     });
   
-    $("#faveHike2").on("click", function () {
-      console.log("I'M A WORKING BUTTON!", $("#trailName1").text());
-      var value2 = $("#trailName1").html();
+    $("#faveHike1").on("click", function () {
+      console.log("I'M A WORKING BUTTON!", $("#trailName1").text().trim());
+      var value2 = $("#trailName1").text().trim();
       allFavorites.push(value2);
     //   localStorage.setItem("trail2", value2);
     localStorage.setItem("savedTrails", JSON.stringify(allFavorites));
     });
   
-    $("#faveHike3").on("click", function () {
-      console.log("I'M A WORKING BUTTON!", $("#trailName2").html());
-      var value3 = $("#trailName2").html();
+    $("#faveHike2").on("click", function () {
+      console.log("I'M A WORKING BUTTON!", $("#trailName2").text().trim());
+      var value3 = $("#trailName2").text().trim();
       allFavorites.push(value3);
     //   localStorage.setItem("trail3", value3);
     localStorage.setItem("savedTrails", JSON.stringify(allFavorites));
     });
   
-    $("#faveHike4").on("click", function () {
+    $("#faveHike3").on("click", function () {
       console.log("I'M A WORKING BUTTON!", $("#trailName3").html());
       var value4 = $("#trailName3").html();
       allFavorites.push(value4);
     //   localStorage.setItem("trail4", value4);
     localStorage.setItem("savedTrails", JSON.stringify(allFavorites));
 
-    
+    $("#faveHike4").on("click", function () {
+      console.log("I'M A WORKING BUTTON!", $("#trailName3").text().trim());
+      var value4 = $("#trailName3").text().trim();
+      allFavorites.push(value4);
+    //   localStorage.setItem("trail4", value4);
+    localStorage.setItem("savedTrails", JSON.stringify(allFavorites));
     });
 
     //Storing the array of user favorite hikes. 
@@ -56,11 +63,11 @@ $(document).ready(function () {
         console.log(allFavorites);
 
          //Set up a loop through the array of trails
-        //  for (var i = 0; i < allFavorites.length; i++) {
+        //  for (var i = 0; i < 5.length; i++) {
             // var trailsToDisplay = allFavorites[i];
             // Call each of them individually and then display in the list.
             // show every name we have in local storage
-            // var List = $("<div>").text(trailsToDisplay)
+            var List = $("<div>").text(trailsToDisplay)
         
     // }
 
