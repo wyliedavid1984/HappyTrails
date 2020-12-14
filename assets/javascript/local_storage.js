@@ -1,9 +1,31 @@
 $(document).ready(function () {
   console.log("ready!");
 
-    //Storing the array of user favorite hikes.
+
     var allFavorites = [];
     console.log(allFavorites);
+
+    //Set up a function to list the user's favorite hikes that are in localStorage
+
+    //Convert the string into a JSON object
+    allFavorites = JSON.parse(localStorage.getItem("savedTrails"));
+$("#myFavorites").on("click", function () {
+    if (allFavorites == null) {
+      allFavorites = [];
+    } else {
+       $(".favsModal").css("display", "block");
+      for (var i = 0; i < allFavorites.length; i++) {
+        $("<p>").text(allFavorites[i].trail).appendTo(".modal-content");
+    $("<a>").text("Click here to view your trail").attr("href", allFavorites[i].url).appendTo(".modal-content");
+      }
+    }
+    $(".favsModal").css("display", "block");
+    // $(".modal-content").append(allFavorites.text());
+  
+    // $("<p>").text(allFavorites).appendTo(".modal-content");
+    // console.log(allFavorites);
+  });
+
 
   //Setting up the functions to save favorite trails to local storage
   $("#faveHike0").on("click", function () {
@@ -51,6 +73,7 @@ $(document).ready(function () {
     allFavorites.push(value4);
     //   localStorage.setItem("trail4", value4);
     localStorage.setItem("savedTrails", JSON.stringify(allFavorites));
+    console.log(allFavorites);
   });
 
   //Set up a function to list the user's favorite hikes that are in localStorage
@@ -69,22 +92,7 @@ $(document).ready(function () {
 
   
   console.log(allFavorites);
-  $("#myFavorites").on("click", function () {
-    if (allFavorites == null) {
-      allFavorites = [];
-    } else {
-       $(".favsModal").css("display", "block");
-      for (var i = 0; i < allFavorites.length; i++) {
-        $("<p>").text(allFavorites[i].trail).appendTo(".modal-content");
-    $("<a>").text("Click here to view your trail").attr("href", allFavorites[i].url).appendTo(".modal-content");
-      }
-    }
-    $(".favsModal").css("display", "block");
-    // $(".modal-content").append(allFavorites.text());
   
-    // $("<p>").text(allFavorites).appendTo(".modal-content");
-    // console.log(allFavorites);
-  });
 
   // When the user clicks on <span> (x), close the modal
  $(".close").on("click",function() {
