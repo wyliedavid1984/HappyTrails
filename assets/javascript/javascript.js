@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-
+    // all global variables
     var userDistance;
     var timeHike;
     var lat;
@@ -18,14 +18,15 @@ $(document).ready(function () {
         event.preventDefault();
 
         if ($("#zip").val() === "") {
-            console.log("hizipno")
+
+            // show error div and then reload the screen
             $("#userCity").addClass("hidden");
             $("#error").removeClass("hidden");
             setTimeout(function () {
                 location.reload();
             }, 1000);
         } else {
-            console.log('hizip')
+
             // hiding previous div and show the next
             $("#userCity").addClass("hidden");
             $("#hikingParameters").removeClass("hidden");
@@ -38,15 +39,16 @@ $(document).ready(function () {
     $("#no-gps").on("click", function (event) {
         event.preventDefault();
         if ($("#city").val() === "") {
-            console.log("hicityno")
+
+            // show error div and then reload the screen
             $("#userCity").addClass("hidden");
             $("#error").removeClass("hidden");
             setTimeout(function () {
                 location.reload();
             }, 1000);
         } else {
+
             // hiding previous div and show the next
-            console.log("hicity")
             $("#userCity").addClass("hidden");
             $("#hikingParameters").removeClass("hidden");
             noGps();
@@ -59,11 +61,12 @@ $(document).ready(function () {
         if (navigator.geolocation) {
 
             // Provide our showPosition() function to getCurrentPosition
-            navigator.geolocation.getCurrentPosition(showPosition, console.log);
+            navigator.geolocation.getCurrentPosition(showPosition);
         } else {
             alert("Geolocation is not supported by this browser.");
         }
     }
+
 
     // This will get called after getCurrentPosition()
     function showPosition(position) {
@@ -78,6 +81,7 @@ $(document).ready(function () {
             return
         }
     }
+
 
     // this function used the parameter 
     function gps(e) {
@@ -109,6 +113,7 @@ $(document).ready(function () {
         });
     }
 
+
     // another user input function takes in zip code.
     function zipCode() {
 
@@ -122,11 +127,12 @@ $(document).ready(function () {
 
     }
 
+
     // function that takes in parameter if the user doesn't want to share location
     function noGps() {
 
         // we are getting the value of the city from the user.
-        var city = $("#city").val(); 
+        var city = $("#city").val();
 
         // Making a url with user input
         var latLonURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherKey}`;
@@ -134,6 +140,7 @@ $(document).ready(function () {
         // getting together all map, markers, and trail data to append to dom.
         getLocal(latLonURL);
     }
+
 
     // this function will get lat and long to put together a hiking URL
     function getLocal(URL) {
@@ -165,11 +172,10 @@ $(document).ready(function () {
                     method: "GET"
                 }).then(function (res) {
 
-                    console.log(res)
-
                     // setting the all variables to get hiking trails
                     var lon = JSON.stringify(res.coord.lon);
                     var lat = JSON.stringify(res.coord.lat);
+
                     // url to get hiking api
                     var hikeURL = `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=${userDistance}&key=200992005-36cef2b40b13fda0780742aba62d29e7`;
 
@@ -179,6 +185,7 @@ $(document).ready(function () {
             }
         })
     }
+
 
     // this function uses the hike url to create our map and trail list
     function createMapTrails(hikeURL, lat, lon) {
@@ -199,6 +206,7 @@ $(document).ready(function () {
         });
     }
 
+
     // This get all trail data and pushes it to the dom.
     function trailList(resp) {
         var hikeLength = timeHike / 12;
@@ -218,19 +226,24 @@ $(document).ready(function () {
         }
     }
 
+
     // creates the map and calls the marker function
     function initMap(lati, long) {
         // the key for access to mapquest api
         L.mapquest.key = 'cm7WzOvDimLpim8JOVFjDAfuIwV2e5h4';
-
+        var userRad = userDistance * 1609;
         // 'map' refers to a <div> element with the ID map
         map = L.mapquest.map('map', {
             center: [lati, long],
             layers: L.mapquest.tileLayer('map'),
-            zoom: 12,
+            zoom: 12
         });
+        L.circle([lati, long], {
+            radius: userRad
+        }).addTo(map)
         setmarkers(trailLocation);
     }
+
 
     // set all marker locations.
     function setmarkers(array) {
