@@ -27,3 +27,8 @@
 .maps {
     width: 500px;
 }
+
+.trail {
+    border-style: dotted;
+    border-color: white;
+}
