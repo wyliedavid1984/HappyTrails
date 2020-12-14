@@ -3,10 +3,9 @@ $(document).ready(function () {
 
   //Set up a function to list the user's favorite hikes that are in localStorage
 
-  var allFavorites = [] 
+  var allFavorites = JSON.parse(localStorage.getItem("savedTrails"))
 
   console.log(allFavorites);
- allFavorites = JSON.parse(localStorage.getItem("savedTrails"));
 
  if(allFavorites === null){
    allFavorites = [];
