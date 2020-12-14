@@ -1,5 +1,6 @@
 console.log("weather api");
 var url = "http://api.openweathermap.org/data/2.5/weather?";
+
 var apiKey = "34af04e7087783be92496c2a33100782";
 var apiUrl;
 
@@ -18,13 +19,17 @@ function getLocation() {
     }
 }
 
+
+
 function savePosition(position) {
     latitude = position.coords.latitude,
     longitude = position.coords.longitude;
     console.log("Lat "+latitude);
     apiUrl = url + "lat=" + latitude +"&"+ "lon=" + longitude +"&"+ "APPID=" + apiKey;
     getWeather(apiUrl);
+
 }
+
 
 function getWeather(url) {
 
@@ -59,10 +64,7 @@ function showWeather(info){
     
 }
 
-/*
-    0 - There was and error in the request or the api service
-    1 - The user blocked the location tool
-*/
+
 
 function showLocationError(){
     document.getElementById("weather-value").innerHTML = "<h2>Location blocked or not supported</h2>";
@@ -74,4 +76,41 @@ function showRequestError(){
     
 }
 
+function ziplocation (){
+    var zip = $("#zip").val();
+    var zipURL = `https://api.openweathermap.org/data/2.5/weather?zip=${zip},us&appid=${weatherKey}`;
+    $.ajax({
+        url: zipURL,
+        method: "GET"
+    }).then(function(res){
+        var weatherValue = info.main.temp;
+        var description = info.weather[0].main;
+        console.log("Weather: "+weatherValue);
+        weatherValue = weatherValue - 273.15;
+        weatherValue = Math.round(weatherValue*100) / 100;
+        weatherValue = weatherValue + "°C";
+        document.getElementById("weather-value").innerHTML = "<h2>"+description+"    "+weatherValue+"</h2>"; 
+    })
+
+}
+
+function citylocation (){
+    var city = $("#city").val();
+    var cityURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherKey}`;
+    $.ajax({
+        url: cityURL,
+        method = "GET"
+    }).then(function(resp){
+        var weatherValue = info.main.temp;
+        var description = info.weather[0].main;
+        console.log("Weather: "+weatherValue);
+        weatherValue = weatherValue - 273.15;
+        weatherValue = Math.round(weatherValue*100) / 100;
+        weatherValue = weatherValue + "°C";
+        document.getElementById("weather-value").innerHTML = "<h2>"+description+"    "+weatherValue+"</h2>"; 
+        
+    })
+}
+
+    
 
