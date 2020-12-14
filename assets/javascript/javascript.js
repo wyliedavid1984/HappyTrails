@@ -215,12 +215,8 @@ $(document).ready(function () {
             // looping through api to gather relevant data.
             if (resp.trails[i].length < hikeLength) {
                 $("#trailName" + i).prepend(resp.trails[i].name + "<br>");
-                console.log(resp.trails[i].url)
-                $("<a>").attr({
-                    class: "link",
-                    src: `${resp.trails[i].url}`,
-                    target: "_blank"
-                }).text("Click Me For Info").appendTo("#trailName"+i);
+                console.log(resp.trails[i].url);
+                $("#link"+i).attr({scr: `${resp.trails[i].url}`, target:"_blank"})
                 $("#length" + i).append("Length: " + resp.trails[i].length + "<br>");
                 $("#difficulty" + i).append("Difficulty: " + resp.trails[i].difficulty + "<br><br>");
                 var myObj = {};
