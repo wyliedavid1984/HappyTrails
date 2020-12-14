@@ -43,9 +43,9 @@
     </section>
 
     <!-- This section displays an input for user city or requests to use user location -->
-    <section class="column has-text-centered">
-      <section class="columns has-text-centered m-5 is-one-quarter">
-        <section id="userCity" class="column">
+    <section id="userCity">
+      <section class="column has-text-centered">
+        <section class="columns has-text-centered m-5 is-half">
           <form>
             <section>
               <p class="column has-text-white">If you want to enable 'Share Location' please click here.</p>
@@ -56,22 +56,22 @@
             </section>
           </form>
         </section>
-      </section>
 
-      <section class="columns has-text-centered m-5 is-one-quarter">
-        <!-- <section class="column"> -->
+        <section class="columns has-text-centered m-5 is-one-quarter">
+          <!-- <section class="column"> -->
           <form class="column mb-3">
             <input type="text" id="zip" placeholder="Please enter a zip code." class="input is-focused mb-2">
             <button type="submit" id="zipCode" class="button is-link is-inverted">Submit Zip Code</button>
           </form>
-        <!-- </section> -->
+          <!-- </section> -->
 
-        <!-- <section class="column"> -->
+          <!-- <section class="column"> -->
           <form id="location-request" class="column">
             <input type="text" id="city" placeholder="Please enter a city." class="input is-focused mb-2">
             <button type="submit" id="no-gps" class="button is-link is-inverted">Submit City</button>
           </form>
-        <!-- </section> -->
+          <!-- </section> -->
+        </section>
       </section>
     </section>
 
@@ -92,16 +92,17 @@
       <p>How many miles are you willing to travel to get to your hiking trail?</p>
       <input type="text" id="radius"><br><br>
       <form action="">
-      <p>How long would you like to hike?</p>
-      <input type="radio" id="shortest" name="time" value="60" class="lengthTime">
-      <label for="shortest">1/2hr-1 hour</label><br>
-      <input type="radio" id="medium" name="time" value="120" class="lengthTime">
-      <label for="medium">1-2 hours</label><br>
-      <input type="radio" id="longest" name="time" value="10000" class="lengthTime">
-      <label for="longest">3+ hours</label><br><br>
+        <p>How long would you like to hike?</p>
+        <input type="radio" id="shortest" name="time" value="60" class="lengthTime">
+        <label for="shortest">1/2hr-1 hour</label><br>
+        <input type="radio" id="medium" name="time" value="120" class="lengthTime">
+        <label for="medium">1-2 hours</label><br>
+        <input type="radio" id="longest" name="time" value="10000" class="lengthTime">
+        <label for="longest">3+ hours</label><br><br>
 
-      <button type="submit" id="parameters">Go Hiking!</button>
-    </form>
+        <button type="submit" id="parameters">Go Hiking!</button>
+      </form>
+
     </section>
 
     <!-- This section displays the trails that were found based on user input -->
@@ -111,7 +112,7 @@
 
         <section class="trail">
           <p id="trailName0">
-            <button id="faveHike1"><i class="fa fa-heart" aria-hidden="true"></i></button>
+            <button id="faveHike0"><i class="fa fa-heart" aria-hidden="true"></i></button>
           </p>
           <p id="length0"></p>
           <p id="difficulty0"></p>
@@ -119,7 +120,7 @@
 
         <section class="trail">
           <p id="trailName1">
-            <button id="faveHike2">Fav</button>
+            <button id="faveHike1">Fav</button>
           </p>
           <p id="length1"></p>
           <p id="difficulty1"></p>
@@ -127,7 +128,7 @@
 
         <section class="trail">
           <p id="trailName2">
-            <button id="faveHike3">Fav</button>
+            <button id="faveHike2">Fav</button>
           </p>
           <p id="length2"></p>
           <p id="difficulty2"></p>
@@ -135,7 +136,7 @@
 
         <section class="trail">
           <p id="trailName3">
-            <button id="faveHike4">Fav</button>
+            <button id="faveHike3">Fav</button>
           </p>
           <p id="length3"></p>
           <p id="difficulty3"></p>
@@ -143,7 +144,7 @@
 
         <section class="trail">
           <p id="trailName4">
-            <button id="faveHike5">Fav</button>
+            <button id="faveHike4">Fav</button>
           </p>
           <p id="length4"></p>
           <p id="difficulty4"></p>
@@ -159,7 +160,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <script src="./assets/javascript/javascript.js"></script>
-  <script src="./assets/javascript/meredith.js"></script>
+  <script src="./assets/javascript/local_storage.js"></script>
 
 </body>
 
