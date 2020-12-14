@@ -4,7 +4,7 @@ $(document).ready(function () {
    
   //Setting up the functions to save favorite trails to local storage 
     $("#faveHike0").on("click", function () {
-
+    
 
       console.log("I'M A WORKING BUTTON!", $("#trailName0").text().trim());
       var value1 = $("#trailName0").text().trim();
@@ -36,7 +36,8 @@ $(document).ready(function () {
       allFavorites.push(value4);
     //   localStorage.setItem("trail4", value4);
     localStorage.setItem("savedTrails", JSON.stringify(allFavorites));
-
+    });
+    
     $("#faveHike4").on("click", function () {
       console.log("I'M A WORKING BUTTON!", $("#trailName3").text().trim());
       var value4 = $("#trailName3").text().trim();
@@ -67,7 +68,7 @@ $(document).ready(function () {
             // var trailsToDisplay = allFavorites[i];
             // Call each of them individually and then display in the list.
             // show every name we have in local storage
-            var List = $("<div>").text(trailsToDisplay)
+            // var List = $("<div>").text(trailsToDisplay)
         
     // }
 
@@ -119,6 +120,5 @@ $(document).ready(function () {
 
 //    <div id='values'></div> */}
 
-
+    
   }); //Closing the ready function
-  
