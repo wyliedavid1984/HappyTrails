@@ -78,7 +78,7 @@ $(document).ready(function () {
       trail: $("#trailName4").text().trim(),
       url: $("#link4").attr("href")
     }
-    allFavorites.push(value5;
+    allFavorites.push(value5);
     //   localStorage.setItem("trail4", value4);
     localStorage.setItem("savedTrails", JSON.stringify(value5));
     console.log(allFavorites);
