@@ -34,7 +34,7 @@ function savePosition(position) {
 
 
 
-function getWeather(url) {
+function getWeather(apiUrl) {
 
     xmlhttps.onreadystatechange = function (){
 
