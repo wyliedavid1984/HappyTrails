@@ -1,61 +1,77 @@
-function weatherBalloon(city) {
+console.log("weather api");
+var url = "http://api.openweathermap.org/data/2.5/weather?";
+var apiKey = "34af04e7087783be92496c2a33100782";
+var apiUrl;
 
-    // setting local variables for the function
-    var key = '34af04e7087783be92496c2a33100782';
-    var latLonURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + key;
+var xmlhttp = new XMLHttpRequest();
 
-    fetch('https://api.openweathermap.org/data/2.5/weather?id =') + city + "&appid="+key;
-    .then(function(resp) {return.resp.json})
-    .then(function(data) {
-        drawWeather(data);
-    })
-    .catch(function() {
+var latitude = 0.0;
+var longitude = 0.0;
 
-    });
-    
-    // first ajax to get the city's lat and lon
-    $.ajax({
-        url: latLonURL,
-        method: "GET"
-    }).then(function (res) {
+getLocation();
 
-        // setting the lon and lat variable to the city's lat and lon
-        var lon = JSON.stringify(res.coord.lon);
-        var lat = JSON.stringify(res.coord.lat);
-        var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&appid=" + key;
-
-        // second ajax to get the a future forecast as well as regular data
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-
-        });
-    
-    });
-
-    $.ajax()
-}
-
-//function displayWeather(city){
-    //$('.weather-result').html(weatherBalloon(city));
-    //for i+2 
-    
-}
-
-function drawWeather( weatherdraw ) {
-    var celcius = Math.round(parseFloat(weatherdraw.main.temp)-273.15);
-    var farenheit = Math.round(((parseFloat(weatherdraw.maintemp)-273.15)*1.8)+32);
-
-    document.getElementById('description').innerHTML = description;
-    document.getElementById('temp').innerHTML = celsius + '&deg;';
-    document.getElementById('location').innerHTML = weatherdraw.name;
-
-    if (description.indexOf('rain') > 0){
-        document.body.className = 'It Is Raining! Not Good Weather For Hiking';
-
-
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(savePosition,showLocationError);
+    } else {
+        console.log("Geolocation is not supported by this browser.");
     }
+}
+
+function savePosition(position) {
+    latitude = position.coords.latitude,
+    longitude = position.coords.longitude;
+    console.log("Lat "+latitude);
+    apiUrl = url + "lat=" + latitude +"&"+ "lon=" + longitude +"&"+ "APPID=" + apiKey;
+    getWeather(apiUrl);
+}
+
+function getWeather(url) {
+
+    xmlhttp.onreadystatechange = function (){
+
+        if (this.status == 200 && this.readyState == 4) {
+            console.log("Info: "+this.responseText);
+            var res = JSON.parse(this.responseText);
+            showWeather(res);
+        } else {
+            console.log("Ready state: " + this.readystate);
+            console.log("Status: " + this.status);
+            if (this.readyState != "undefined" && this.status > 200) {
+                showRequestError();
+            }
+        }
+    };
+
+    console.log(apiUrl);
+    xmlhttp.open("GET", apiUrl, true);
+    xmlhttp.send();
+}
+
+function showWeather(info){
+    var weatherValue = info.main.temp;
+    var description = info.weather[0].main;
+    console.log("Weather: "+weatherValue);
+    weatherValue = weatherValue - 273.15;
+    weatherValue = Math.round(weatherValue*100) / 100;
+    weatherValue = weatherValue + "°C";
+    document.getElementById("weather-value").innerHTML = "<h2>"+description+"    "+weatherValue+"</h2>";
+    
+}
+
+/*
+    0 - There was and error in the request or the api service
+    1 - The user blocked the location tool
+*/
+
+function showLocationError(){
+    document.getElementById("weather-value").innerHTML = "<h2>Location blocked or not supported</h2>";
+    
+}
+
+function showRequestError(){
+    document.getElementById("weather-value").innerHTML = "<h2>The weather service is not working</h2>";
+    
 }
 
 
