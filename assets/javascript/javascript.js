@@ -214,8 +214,8 @@ $(document).ready(function () {
 
             // looping through api to gather relevant data.
             if (resp.trails[i].length < hikeLength) {
-                $("#trailName" + i).prepend("Trail Name: " + resp.trails[i].name + "<br>");
-                $("#length" + i).append("Trail Length: " + resp.trails[i].length + "<br>");
+                $("#trailName" + i).prepend(resp.trails[i].name + "<br>");
+                $("#length" + i).append("Length: " + resp.trails[i].length + "<br>");
                 $("#difficulty" + i).append("Difficulty: " + resp.trails[i].difficulty + "<br><br>");
                 var myObj = {};
                 myObj.lat = resp.trails[i].latitude;
@@ -229,19 +229,25 @@ $(document).ready(function () {
 
     // creates the map and calls the marker function
     function initMap(lati, long) {
+
         // the key for access to mapquest api
         L.mapquest.key = 'cm7WzOvDimLpim8JOVFjDAfuIwV2e5h4';
         var userRad = userDistance * 1609;
-        // 'map' refers to a <div> element with the ID map
+
+        // 'map' refers to a <div> element with the ID map and displays it there
         map = L.mapquest.map('map', {
             center: [lati, long],
             layers: L.mapquest.tileLayer('map'),
             zoom: 12
         });
+
+        // adding in a circle to specific radius for user to view
         L.circle([lati, long], {
             radius: userRad
         }).addTo(map)
         setmarkers(trailLocation);
+
+
     }
 
 
