@@ -61,17 +61,41 @@ $(document).ready(function () {
   //If savedTrails doesn't exist in localstorage,
   // allFavorites will be null. If allFavorites is null, allFavorites.length will throw an error.
   //set up an if statement so if allFavorties = null, initialize allFavorites anyway.
-  if (allFavorites == null) {
-    allFavorites = [];
-  } else {
-    for (var i = 0; i < allFavorites.length; i++) {}
-  }
+  // if (allFavorites == null) {
+  //   allFavorites = [];
+  // } else {
+  //   for (var i = 0; i < allFavorites.length; i++) {}
+  // }
 
+  
   console.log(allFavorites);
   $("#myFavorites").on("click", function () {
-    $("#favoritesList").append(allFavorites);
-    console.log(allFavorites);
+    if (allFavorites == null) {
+      allFavorites = [];
+    } else {
+       $(".favsModal").css("display", "block");
+      for (var i = 0; i < allFavorites.length; i++) {
+        $("<p>").text(allFavorites[i].trail).appendTo(".modal-content");
+    $("<a>").text("Click here to view your trail").attr("href", allFavorites[i].url).appendTo(".modal-content");
+      }
+    }
+    $(".favsModal").css("display", "block");
+    // $(".modal-content").append(allFavorites.text());
+  
+    // $("<p>").text(allFavorites).appendTo(".modal-content");
+    // console.log(allFavorites);
   });
+
+  // When the user clicks on <span> (x), close the modal
+ $(".close").on("click",function() {
+  $(".favsModal").css("display", "none");
+})
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target ==   $(".favsModal")){
+    $(".favsModal").css("display", "none");
+  }
+}
 
 
   //  create an empty array to store the user's input (favorite hikes)
