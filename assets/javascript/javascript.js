@@ -144,7 +144,7 @@ $(document).ready(function () {
 
     // this function will get lat and long to put together a hiking URL
     function getLocal(URL) {
-        console.log(userDistance);
+        
         // first ajax to get the city's lat and lon
         $("#parameters").on("click", function (e) {
 
@@ -195,8 +195,7 @@ $(document).ready(function () {
             url: hikeURL,
             method: "GET"
         }).then(function (response) {
-            console.log(response);
-
+            
             // looping through api to gather relevant data.
             trailList(response);
             // makes map and creates markers
