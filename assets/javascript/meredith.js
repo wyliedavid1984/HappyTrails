@@ -41,7 +41,7 @@ $(document).ready(function () {
         var allFavorites = [];
             console.log(allFavorites) 
     
-    A
+    
                     $("#savedFavorites").on('click' , function() {
                       $("#favoritesList").append(allFavorites);
                   
