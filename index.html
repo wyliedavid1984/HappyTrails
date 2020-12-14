@@ -75,74 +75,78 @@
       </section>
     </section>
 
-    <section id="error" class="hidden">
+    <section id="error" class="hidden has-background-danger has-text-white">
       <p>An error has occured please enter some data</p>
     </section>
-
-    <section id="error2" class="hidden">
+    <section id="error2" class="hidden has-background-danger has-text-white">
       <p>An error has occured please make sure all fields are filled out.</p>
     </section>
 
-
-
     <!-- This section ask user for hiking parameters -->
-    <section id="hikingParameters" class="hidden column is-fullheight has-text-centered">
-      <p>How many miles are you willing to travel to get to your hiking trail?</p>
-      <input type="text" id="radius"><br><br>
-      <form action="">
-        <p>How long would you like to hike?</p>
-        <input type="radio" id="shortest" name="time" value="60" class="lengthTime">
-        <label for="shortest">1/2hr-1 hour</label><br>
-        <input type="radio" id="medium" name="time" value="120" class="lengthTime">
-        <label for="medium">1-2 hours</label><br>
-        <input type="radio" id="longest" name="time" value="10000" class="lengthTime">
-        <label for="longest">3+ hours</label><br><br>
+    <section id="hikingParameters" class="column is-full hidden is-centered">
+      <Section class="column is-full has-text-centered">
+        <p>How many miles are you willing to travel to get to your hiking trail?</p>
+        <section class="column is-full">
+          <input type="text" id="radius" class="input is-focused"><br><br>
+        </section>
+        <form action="">
+          <p>How long would you like to hike?</p>
+          <input type="radio" id="shortest" name="time" value="60" class="lengthTime">
+          <label for="shortest">1/2hr-1 hour</label><br>
+          <input type="radio" id="medium" name="time" value="120" class="lengthTime">
+          <label for="medium">1-2 hours</label><br>
+          <input type="radio" id="longest" name="time" value="10000" class="lengthTime">
+          <label for="longest">3+ hours</label><br><br>
 
-        <button type="submit" id="parameters">Go Hiking!</button>
-      </form>
-
+          <button type="submit" id="parameters" class="button is-link is-inverted">Go Hiking!</button>
+        </form>
+      </Section>
     </section>
 
     <!-- This section displays the trails that were found based on user input -->
-    <section class="hidden container is-full" id="userTrails">
-      <Section id="map" class="maps mobile tablet desktop">Map here</Section>
+    <section class="hidden column is-full has-text-centered" id="userTrails">
+      <Section id="map" class="is-centered  mb-6"></Section>
       <section id="trailsFound">
 
-        <section class="trail">
-          <p id="trailName0">
+        <p class="has-text-white mb-1">Trails found within your selected radius:</p>
+
+        <section class="trail mb-2">
+          <p id="trailName0" class="has-text-link-dark is-size-5">
             <button id="faveHike0"><i class="fa fa-heart" aria-hidden="true"></i></button>
           </p>
           <p id="length0"></p>
           <p id="difficulty0"></p>
         </section>
 
-        <section class="trail">
-          <p id="trailName1">
-            <button id="faveHike1">Fav</button>
+        <section class="trail mb-2">
+          <section class="column">
+            <p id="trailName1"class="has-text-link-dark is-size-5">
+            <button id="faveHike1"><i class="fa fa-heart" aria-hidden="true"></i></button>
+          </section>
           </p>
           <p id="length1"></p>
           <p id="difficulty1"></p>
         </section>
 
-        <section class="trail">
-          <p id="trailName2">
-            <button id="faveHike2">Fav</button>
+        <section class="trail mb-2">
+          <p id="trailName2"class="has-text-link-dark is-size-5">
+            <button id="faveHike2"></i><i class="fa fa-heart" aria-hidden="true"></i></button>
           </p>
           <p id="length2"></p>
           <p id="difficulty2"></p>
         </section>
 
-        <section class="trail">
-          <p id="trailName3">
-            <button id="faveHike3">Fav</button>
+        <section class="trail mb-2">
+          <p id="trailName3"class="has-text-link-dark is-size-5">
+            <button id="faveHike3"><i class="fa fa-heart" aria-hidden="true"></i></button>
           </p>
           <p id="length3"></p>
           <p id="difficulty3"></p>
         </section>
 
-        <section class="trail">
-          <p id="trailName4">
-            <button id="faveHike4">Fav</button>
+        <section class="trail mb-2">
+          <p id="trailName4"class="has-text-link-dark is-size-5">
+            <button id="faveHike4"><i class="fa fa-heart" aria-hidden="true"></i></button>
           </p>
           <p id="length4"></p>
           <p id="difficulty4"></p>
