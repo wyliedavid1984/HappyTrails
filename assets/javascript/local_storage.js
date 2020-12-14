@@ -31,13 +31,13 @@ $(document).ready(function () {
     });
   
     $("#faveHike3").on("click", function () {
-      console.log("I'M A WORKING BUTTON!", $("#trailName3").html());
-      var value4 = $("#trailName3").html();
+      console.log("I'M A WORKING BUTTON!", $("#trailName3").text().trim());
+      var value4 = $("#trailName3").text().trim();
       allFavorites.push(value4);
     //   localStorage.setItem("trail4", value4);
     localStorage.setItem("savedTrails", JSON.stringify(allFavorites));
     });
-    
+
     $("#faveHike4").on("click", function () {
       console.log("I'M A WORKING BUTTON!", $("#trailName3").text().trim());
       var value4 = $("#trailName3").text().trim();
