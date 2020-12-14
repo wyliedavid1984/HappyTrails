@@ -106,13 +106,14 @@
 
     <!-- This section displays the trails that were found based on user input -->
     <section class="hidden column is-full has-text-centered" id="userTrails">
+       <p class="has-text-white mb-1 has-text-weight-semibold">Trails found within your selected radius:</p>
       <Section id="map" class="is-centered  mb-6"></Section>
       <section id="trailsFound">
 
-        <p class="has-text-white mb-1 has-text-weight-semibold">Trails found within your selected radius:</p>
+       
 
-        <section class="trail mb-2">
-          <p id="trailName0" class="has-text-link-dark is-size-5">
+        <section class="trail hidden mb-2" id="trail0">
+        <p id="trailName0" class="has-text-link-dark is-size-5">
 
             <button id="faveHike0"><i class="fa fa-heart has-text-danger-dark" aria-hidden="true"></i></button>
           </p>
@@ -121,7 +122,7 @@
           <p id="difficulty0"></p>
         </section>
 
-        <section class="trail mb-2">
+        <section class="trail hidden mb-2" id="trail1">
           <section class="column">
             <p id="trailName1" class="has-text-link-dark is-size-5">
 
@@ -133,7 +134,7 @@
           <p id="difficulty1"></p>
         </section>
 
-        <section class="trail mb-2">
+        <section class="trail hidden mb-2" id="trail2">
           <p id="trailName2" class="has-text-link-dark is-size-5">
 
             <button id="faveHike2"></i><i class="fa fa-heart has-text-danger-dark" aria-hidden="true"></i></button>
@@ -143,7 +144,7 @@
           <p id="difficulty2"></p>
         </section>
 
-        <section class="trail mb-2">
+        <section class="trail hidden mb-2" id="trail3">
           <p id="trailName3" class="has-text-link-dark is-size-5">
 
             <button id="faveHike3"><i class="fa fa-heart has-text-danger-dark" aria-hidden="true"></i></button>
@@ -153,7 +154,7 @@
           <p id="difficulty3"></p>
         </section>
 
-        <section class="trail mb-2">
+        <section class="trail hidden mb-2" id="trail4">
           <p id="trailName4" class="has-text-link-dark is-size-5">
 
             <button id="faveHike4"><i class="fa fa-heart has-text-danger-dark" aria-hidden="true"></i></button>
@@ -174,7 +175,7 @@
 
   <script src="./assets/javascript/javascript.js"></script>
   <script src="./assets/javascript/local_storage.js"></script>
-  <script src="assets/javascript/weather.js"></script>
+  <script src="./assets/javascript/weather.js"></script>
 
 </body>
 
