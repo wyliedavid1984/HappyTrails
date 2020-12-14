@@ -45,15 +45,15 @@ $(document).ready(function () {
 //Set up a function to list the user's favorite hikes that are in localStorage
      
         //Convert the string into a JSON object
-        // allFavorites = JSON.parse(localStorage.getItem("savedTrails"));
+        allFavorites = JSON.parse(localStorage.getItem("savedTrails"));
 
         //If savedTrails doesn't exist in localstorage,
         // allFavorites will be null. If allFavorites is null, allFavorites.length will throw an error. 
         //set up an if statement so if allFavorties = null, initialize allFavorites anyway.
-        // if (allFavorites == null) {
-        // allFavorites = [];
-        // }
-        // console.log(allFavorites);
+        if (allFavorites == null) {
+        allFavorites = [];
+        }
+        console.log(allFavorites);
 
          //Set up a loop through the array of trails
         //  for (var i = 0; i < allFavorites.length; i++) {
@@ -64,26 +64,13 @@ $(document).ready(function () {
         
     // }
 
-                $("#savedFavorites").on('click' , function() {
+                $("#myFavorites").on('click' , function() {
                   $("#favoritesList").append(allFavorites);
                   console.log(allFavorites);
                  
                 
         });
                
-
-
-    // //Create function to get the user favorites
-    // function GetInput(event) {
-    //     event.preventDefault();
-    //     //store user's input in variable
-    //     var userCity = $(".SearchCity").val(); 
-    //     //Create the array of cities
-    //     Cities.push(userCity);
-    //     //Make a string from the cities in the Cities Array
-    //     localStorage.setItem("CitiesNames", JSON.stringify(Cities));
-
-
 
   
     // function getLocalStorage() {
@@ -125,23 +112,6 @@ $(document).ready(function () {
 
 //    <div id='values'></div> */}
 
-
-
-    // $("#trailName1 .input-group .form-control").val(
-    //   localStorage.getItem("value1")
-    // );
-    // $("#trailName2 .input-group .form-control").val(
-    //   localStorage.getItem("value2")
-    // );
-    // $("#trailName3 .input-group .form-control").val(
-    //   localStorage.getItem("value3")
-    // );
-    // $("#trailName4 .input-group .form-control").val(
-    //   localStorage.getItem("value4")
-    // );
-   
-    // getLocalStorage();
-    // on("click");
 
   }); //Closing the ready function
   
