@@ -4,8 +4,10 @@ $(document).ready(function () {
     for (var i = 0; i < 5.length; i++) {
   //Setting up the functions to save favorite trails to local storage 
     $("#faveHike0").on("click", function () {
-      console.log("I'M A WORKING BUTTON!", $("#trailName0").text());
-      var value1 = $("#trailName0").html();
+
+
+      console.log("I'M A WORKING BUTTON!", $("#trailName0").text().trim());
+      var value1 = $("#trailName0").text().trim();
       //save values to localstorage
       allFavorites.push(value1);
     //   localStorage.setItem("trail1", value1);
