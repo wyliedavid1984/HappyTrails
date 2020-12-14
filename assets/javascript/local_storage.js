@@ -1,6 +1,7 @@
 $(document).ready(function () {
   console.log("ready!");
 
+
     var allFavorites = [];
     console.log(allFavorites);
 
@@ -24,6 +25,7 @@ $("#myFavorites").on("click", function () {
     // $("<p>").text(allFavorites).appendTo(".modal-content");
     // console.log(allFavorites);
   });
+
 
   //Setting up the functions to save favorite trails to local storage
   $("#faveHike0").on("click", function () {
@@ -73,10 +75,6 @@ $("#myFavorites").on("click", function () {
     localStorage.setItem("savedTrails", JSON.stringify(allFavorites));
     console.log(allFavorites);
   });
-
-  //Storing the array of user favorite hikes.
-  var allFavorites = [];
-  console.log(allFavorites);
 
   //Set up a function to list the user's favorite hikes that are in localStorage
 
