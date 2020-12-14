@@ -32,3 +32,7 @@
     border-style: dotted;
     border-color: white;
 }
+
+.bodyBackground {
+    background-image: linear-gradient(green,rgb(155, 127, 102),rgb(160, 150, 134),white)
+}
