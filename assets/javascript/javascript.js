@@ -231,13 +231,16 @@ $(document).ready(function () {
     function initMap(lati, long) {
         // the key for access to mapquest api
         L.mapquest.key = 'cm7WzOvDimLpim8JOVFjDAfuIwV2e5h4';
-
+        var userRad = userDistance * 1609;
         // 'map' refers to a <div> element with the ID map
         map = L.mapquest.map('map', {
             center: [lati, long],
             layers: L.mapquest.tileLayer('map'),
-            zoom: 12,
+            zoom: 12
         });
+        L.circle([lati, long], {
+            radius: userRad
+        }).addTo(map)
         setmarkers(trailLocation);
     }
 
