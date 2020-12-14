@@ -99,7 +99,7 @@ function citylocation (){
     var cityURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherKey}`;
     $.ajax({
         url: cityURL,
-        method = "GET"
+        method: "GET"
     }).then(function(resp){
         var weatherValue = info.main.temp;
         var description = info.weather[0].main;
