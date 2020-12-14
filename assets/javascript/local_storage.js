@@ -1,124 +1,106 @@
 $(document).ready(function () {
-    console.log("ready!");
-  
-   
-  //Setting up the functions to save favorite trails to local storage 
-    $("#faveHike0").on("click", function () {
-    
+  console.log("ready!");
 
-      console.log("I'M A WORKING BUTTON!", $("#trailName0").text().trim());
-      var value1 = $("#trailName0").text().trim();
-      //save values to localstorage
-      allFavorites.push(value1);
+  //Setting up the functions to save favorite trails to local storage
+  $("#faveHike0").on("click", function () {
+    var value1 = {
+      trail: $("#trailName0").text().trim(),
+      url: $("#link0").attr("href")}
+      console.log(value1);
+       //save values to localstorage
+    allFavorites.push(value1);
     //   localStorage.setItem("trail1", value1);
     localStorage.setItem("savedTrails", JSON.stringify(allFavorites));
-    });
-  
-    $("#faveHike1").on("click", function () {
-      console.log("I'M A WORKING BUTTON!", $("#trailName1").text().trim());
-      var value2 = $("#trailName1").text().trim();
-      allFavorites.push(value2);
+  });
+
+  $("#faveHike1").on("click", function () {
+    var value2 = {
+    trail: $("#trailName1").text().trim(),
+    url: $("#link1").attr("href")}
+    allFavorites.push(value2);
     //   localStorage.setItem("trail2", value2);
     localStorage.setItem("savedTrails", JSON.stringify(allFavorites));
-    });
-  
-    $("#faveHike2").on("click", function () {
-      console.log("I'M A WORKING BUTTON!", $("#trailName2").text().trim());
-      var value3 = $("#trailName2").text().trim();
-      allFavorites.push(value3);
+  });
+
+  $("#faveHike2").on("click", function () {
+    var value3 = {
+      trail: $("#trailName2").text().trim(),
+      url: $("#link2").attr("href")}
+    allFavorites.push(value3);
     //   localStorage.setItem("trail3", value3);
     localStorage.setItem("savedTrails", JSON.stringify(allFavorites));
-    });
-  
-    $("#faveHike3").on("click", function () {
-      console.log("I'M A WORKING BUTTON!", $("#trailName3").text().trim());
-      var value4 = $("#trailName3").text().trim();
-      allFavorites.push(value4);
+  });
+
+  $("#faveHike3").on("click", function () {
+    var value4 = {
+      trail: $("#trailName3").text().trim(),
+      url: $("#link3").attr("href")}
+    allFavorites.push(value4);
     //   localStorage.setItem("trail4", value4);
     localStorage.setItem("savedTrails", JSON.stringify(allFavorites));
-    });
+  });
 
-    $("#faveHike4").on("click", function () {
-      console.log("I'M A WORKING BUTTON!", $("#trailName3").text().trim());
-      var value4 = $("#trailName3").text().trim();
-      allFavorites.push(value4);
+  $("#faveHike4").on("click", function () {
+    var value4 = {
+      trail: $("#trailName4").text().trim(),
+      url: $("#link4").attr("href")}
+    allFavorites.push(value4);
     //   localStorage.setItem("trail4", value4);
     localStorage.setItem("savedTrails", JSON.stringify(allFavorites));
-    });
+  });
 
-    //Storing the array of user favorite hikes. 
-    var allFavorites = [];
-        console.log(allFavorites) 
+  //Storing the array of user favorite hikes.
+  var allFavorites = [];
+  console.log(allFavorites);
 
-//Set up a function to list the user's favorite hikes that are in localStorage
-     
-        //Convert the string into a JSON object
-        allFavorites = JSON.parse(localStorage.getItem("savedTrails"));
+  //Set up a function to list the user's favorite hikes that are in localStorage
 
-        //If savedTrails doesn't exist in localstorage,
-        // allFavorites will be null. If allFavorites is null, allFavorites.length will throw an error. 
-        //set up an if statement so if allFavorties = null, initialize allFavorites anyway.
-        if (allFavorites == null) {
-        allFavorites = [];
-        }
-        console.log(allFavorites);
+  //Convert the string into a JSON object
+  allFavorites = JSON.parse(localStorage.getItem("savedTrails"));
 
-         //Set up a loop through the array of trails
-        //  for (var i = 0; i < 5.length; i++) {
-            // var trailsToDisplay = allFavorites[i];
-            // Call each of them individually and then display in the list.
-            // show every name we have in local storage
-            // var List = $("<div>").text(trailsToDisplay)
-        
-    // }
+  //If savedTrails doesn't exist in localstorage,
+  // allFavorites will be null. If allFavorites is null, allFavorites.length will throw an error.
+  //set up an if statement so if allFavorties = null, initialize allFavorites anyway.
+  if (allFavorites == null) {
+    allFavorites = [];
+  } else {
+    for (var i = 0; i < allFavorites.length; i++) {}
+  }
 
-                $("#myFavorites").on('click' , function() {
-                  $("#favoritesList").append(allFavorites);
-                  console.log(allFavorites);
-                 
-                
-        });
-               
-
-  
-    // function getLocalStorage() {
-    //         myFavorites.addEventListener('click', (myFavorites) => {
-    //             console.log(localStorage.getItem('favehike1'))
-    //           })
-    //       }
-
-    //  create an empty array to store the user's input (favorite hikes)
-
-    //  var allFavorites = [value1, value2, value3, value4];
-    //  console.log(allFavorites);
+  console.log(allFavorites);
+  $("#myFavorites").on("click", function () {
+    $("#favoritesList").append(allFavorites);
+    console.log(allFavorites);
+  });
 
 
-//     values = [];
+  //  create an empty array to store the user's input (favorite hikes)
 
-// function addRecord() {
-//   var inp = $("#inputtext");
-//   values.push(inp.value);
-//   inp.value = "";  
-// }
+  //  var allFavorites = [value1, value2, value3, value4];
+  //  console.log(allFavorites);
 
-// function displayRecord() {
-//   document.getElementById("values").innerHTML = values.join(", ");
-// }
+  //     values = [];
 
-// {/* <table>
-    //         <tr>
-    //             <td>Enter the Input</td>
-    //             <td><input type="text" id="inputtext" /></td>
-    //         </tr>
-    //         <tr>
-    //             <td></td>
-    //             <td><button type="button" id="add" onclick="addRecord();">Add </button>
-    //             <button type="button" id="display" onclick="displayRecord();">Display</button>
-    //             </td>
-    //         </tr>
-    // </table>
+  // function addRecord() {
+  //   var inp = $("#inputtext");
+  //   values.push(inp.value);
+  //   inp.value = "";
+  // }
 
-//    <div id='values'></div> */}
+  // function displayRecord() {
+  //   document.getElementById("values").innerHTML = values.join(", ");
+  // }
 
-    
-  }); //Closing the ready function
+  // {/* <table>
+  //         <tr>
+  //             <td>Enter the Input</td>
+  //             <td><input type="text" id="inputtext" /></td>
+  //         </tr>
+  //         <tr>
+  //             <td></td>
+  //             <td><button type="button" id="add" onclick="addRecord();">Add </button>
+  //             <button type="button" id="display" onclick="displayRecord();">Display</button>
+  //             </td>
+  //         </tr>
+  // </table>
+}); //Closing the ready function

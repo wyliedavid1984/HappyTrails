@@ -3,12 +3,6 @@
 Happy Trails Hiking Application
 =======================================================================
 
- 
-When the application loads, the user is prompted to either enable our application to determine their location, or to manually enter thier zip code or city. 
-Once the user location has been determined, they will be asked to enter how far thy are willing to travel to reach their hiking trail, as well as how long of a hike they would like to go on. 
-Those user inputs will inform the populating of a map with pin drops at the generated trail locations, as well as a listing of the suggested trails below the map. 
-Each suggested trail has an option to save it as a "favorite" with the click on the heart icon to the right of it. 
-In order for a user to display their saved trails, they will hit the "Favorites" button at the top right of the page. 
 
 ## Table of Contents
 
@@ -32,7 +26,7 @@ Happy Trails makes it simple to seach for nearby trails, and tailor the list to 
 
 ## Scope of functionalities 
 When the application loads, the user is prompted to either enable our application to determine their location, or to manually enter thier zip code or city. 
-Once the user location has been determined, they will be asked to enter how far thy are willing to travel to reach their hiking trail, as well as how long of a hike they would like to go on. 
+Once the user location has been determined, they will be asked to enter how far they are willing to travel to reach their hiking trail, as well as how long of a hike they would like to go on. 
 Those user inputs will inform the populating of a map with pin drops at the generated trail locations, as well as a listing of the suggested trails below the map. 
 Each suggested trail has an option to save it as a "favorite" with the click on the heart icon to the right of it. 
 In order for a user to display their saved trails, they will hit the "Favorites" button at the top right of the page. 
@@ -61,9 +55,12 @@ In order for a user to display their saved trails, they will hit the "Favorites"
 ### CSS
 
 ## Technologies
-* Javascript - version 5
-* HTML - version 5
-* CSS - version 
+<details>
+<summary> Javascript</summary>
+<details>
+<summary> HTML</summary>
+<details>
+<summary> CSS</summary>
 
 ### Screen Shots
 
