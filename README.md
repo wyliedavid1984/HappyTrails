@@ -15,7 +15,7 @@ Happy Trails Hiking Application
 
 -[Credits](#Credits)
 
--[License(#License) 
+-[License](#License) 
 
 
 ## Links
@@ -80,7 +80,7 @@ Mapquest, OpenWeather, HikingProject.com
 * Modal to display saved favorite trails
 
 
-##Project Challenges
+## Project Challenges
 * Initially our team was working to create an app to allow users to avoid crowded locations during our current pandemic. 
 Our goal was to integrate Google’s “busy times” feature associated with stores and other destinations. Our first day of development was spent exploring API capabilities, and in the end we realized that Google’s API does not allow the information that we needed about foot traffic to be obtained from their API. We regrouped and decided to pivot to our current project to help people connect with local trails, and spend more time outdoors. 
 
@@ -90,7 +90,7 @@ Our goal was to integrate Google’s “busy times” feature associated with st
 * We will program the stored favorites function so that saved user searches will not be duplicated if they are indicated as a favorite more than once. 
 
 
-##Application Expansions in the future:
+## Application Expansions in the future:
 * GPS functionality for users to obtain their exact location on a given trail map.   
 * Up to the minute weather forecast integration.  
 * Function to generate driving directions to trail locations.  
@@ -112,3 +112,6 @@ Our goal was to integrate Google’s “busy times” feature associated with st
 
 ## Contact
 Created by [@DavidWylie](https://github.com/wyliedavid1984),  [@MeredithJones](https://github.com/meredithajones),  [@MerlinRock](https://github.com/MerlinRock),  [@SomSofari](https://github.com/somisalami12) 
+
+## License 
+This project is licensed under the terms of the MIT license.
