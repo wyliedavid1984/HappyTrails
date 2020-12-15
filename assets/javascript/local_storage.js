@@ -1,14 +1,10 @@
 $(document).ready(function () {
-  console.log("ready!");
 
-  //Set up a function to list the user's favorite hikes that are in localStorage
 
+  //  setting global variable
   var allFavorites = [];
 
-  console.log(allFavorites);
- 
-  //Convert the string into a JSON object
-
+// adding functionality to favorite button
   $("#myFavorites").on("click", function () {
     if (allFavorites == null) {
       allFavorites = [];
@@ -19,11 +15,6 @@ $(document).ready(function () {
         $("<a>").text("Click here to view your trail").attr("href", allFavorites[i].url).appendTo(".modal-content");
       }
     }
-    $(".favsModal").css("display", "block");
-    // $(".modal-content").append(allFavorites.text());
-
-    // $("<p>").text(allFavorites).appendTo(".modal-content");
-    // console.log(allFavorites);
   });
 
   //Setting up the functions to save favorite trails to local storage
@@ -32,7 +23,6 @@ $(document).ready(function () {
       trail: $("#trailName0").text().trim(),
       url: $("#link0").attr("href")
     }
-    console.log(value1);
     //save values to localstorage
     allFavorites.push(value1);
     //   localStorage.setItem("trail1", value1);
@@ -81,27 +71,12 @@ $(document).ready(function () {
   });
 
   //Set up a function to list the user's favorite hikes that are in localStorage
-   //Convert the string into a JSON object
-allFavorites = JSON.parse(localStorage.getItem("savedTrails"));
+  //Convert the string into a JSON object
+  allFavorites = JSON.parse(localStorage.getItem("savedTrails"));
 
- if(allFavorites === null){
-   allFavorites = [];
- }
- 
- 
-
-  //If savedTrails doesn't exist in localstorage,
-  // allFavorites will be null. If allFavorites is null, allFavorites.length will throw an error.
-  //set up an if statement so if allFavorties = null, initialize allFavorites anyway.
-  // if (allFavorites == null) {
-  //   allFavorites = [];
-  // } else {
-  //   for (var i = 0; i < allFavorites.length; i++) {}
-  // }
-
-
-  console.log(allFavorites);
-
+  if (allFavorites === null) {
+    allFavorites = [];
+  }
 
   // When the user clicks on <span> (x), close the modal
   $(".close").on("click", function () {
@@ -115,33 +90,4 @@ allFavorites = JSON.parse(localStorage.getItem("savedTrails"));
   }
 
 
-  //  create an empty array to store the user's input (favorite hikes)
-
-  //  var allFavorites = [value1, value2, value3, value4];
-  //  console.log(allFavorites);
-
-  //     values = [];
-
-  // function addRecord() {
-  //   var inp = $("#inputtext");
-  //   values.push(inp.value);
-  //   inp.value = "";
-  // }
-
-  // function displayRecord() {
-  //   document.getElementById("values").innerHTML = values.join(", ");
-  // }
-
-  // {/* <table>
-  //         <tr>
-  //             <td>Enter the Input</td>
-  //             <td><input type="text" id="inputtext" /></td>
-  //         </tr>
-  //         <tr>
-  //             <td></td>
-  //             <td><button type="button" id="add" onclick="addRecord();">Add </button>
-  //             <button type="button" id="display" onclick="displayRecord();">Display</button>
-  //             </td>
-  //         </tr>
-  // </table>
 }); //Closing the ready function
