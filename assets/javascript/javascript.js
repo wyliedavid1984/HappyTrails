@@ -258,7 +258,7 @@ $(document).ready(function () {
     // set all marker locations.
     function setmarkers(array) {
         // loops through the array to set markers
-        for (var i = 0; i < array.length - 1; i++) {
+        for (var i = 0; i < array.length; i++) {
             L.mapquest.textMarker([array[i].lat, array[i].long], {
                 // title for only hover effect
                 text: array[i].name,
