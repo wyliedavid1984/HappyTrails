@@ -43,7 +43,7 @@ In order for a user to display their saved trails, they will hit the "Favorites"
 
 ![“An image of a map which has been populated with markers at trail locations after a user search”](assets/images/map.png)
 
-![“An image of the list of trails returned from user search. Each trail name is followed by a favorite button represented by a heart icon in order to save the trail name above it to a list of favorite trails”](assets/images/map.png)
+![“An image of the list of trails returned from user search. Each trail name is followed by a favorite button represented by a heart icon in order to save the trail name above it to a list of favorite trails”](assets/images/results.png)
 
 
 
@@ -106,8 +106,9 @@ Our goal was to integrate Google’s “busy times” feature associated with st
 * [Stack Overflow general research](https://stackoverflow.com/) 
 * [Mdn web docs general research](https://developer.mozilla.org/en-US/)
 * [AskBCS bug fixes]
-* [JQuery documentation](https://api.jquery.com/)
+* [Hikingproject api](https://www.hikingproject.com/data)
 * [Open Weather api](https://openweathermap.org/api)
+* [Mapquest api](https://developer.mapquest.com/documentation/open/)
 
 
 ## Contact
